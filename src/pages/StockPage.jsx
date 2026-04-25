@@ -36,7 +36,7 @@ export default function StockPage() {
         const response = await apiClient.getCatalog(activeBusinessId);
         setItems(response.data || []);
       } catch (loadError) {
-        setError(loadError.message || "Failed to load stock items");
+        setError(loadError.message || "Stock items load bhayena");
       } finally {
         setLoading(false);
       }
@@ -145,7 +145,7 @@ export default function StockPage() {
     <div className="page-stack">
       <PageHeaderCard
         title="Stock"
-        subtitle="View available stock quantities and pricing across your active business"
+        subtitle="Available quantity, low stock alert, ra pricing sajilai hernus"
       />
 
       <ContentCard>
@@ -158,11 +158,11 @@ export default function StockPage() {
             ))}
           </select>
 
-          <span className="invoice-meta">{filteredItems.length} listed item(s)</span>
+          <span className="invoice-meta">{filteredItems.length} items listed</span>
         </div>
 
-        {loading ? <EmptyState message="Loading stock data..." /> : null}
-        {!loading && error ? <EmptyState message={error} /> : null}
+        {loading ? <EmptyState title="Stock load hudai cha" message="Inventory details tayar gardai..." /> : null}
+        {!loading && error ? <EmptyState title="Stock load bhayena" message={error} tone="error" /> : null}
 
         {!loading && !error ? (
           <>
@@ -205,7 +205,7 @@ export default function StockPage() {
                 columns={columns}
                 rows={filteredItems}
                 title="Stock Listing"
-                searchPlaceholder="Search stock by item, sku, category"
+                searchPlaceholder="Item name, SKU, category, wa status search garnus"
               />
             </div>
           </>

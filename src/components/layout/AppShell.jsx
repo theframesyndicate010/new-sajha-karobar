@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { Outlet } from "react-router-dom";
 
+import EmptyState from "../common/EmptyState.jsx";
+import PageLoader from "../common/PageLoader.jsx";
 import { useBusiness } from "../../context/useBusiness.js";
 import PwaUpdatePrompt from "../common/PwaUpdatePrompt.jsx";
 import Header from "./Header.jsx";
@@ -62,15 +64,11 @@ export default function AppShell() {
         <Header onToggleSidebar={toggleSidebar} />
 
         <section className="dashboard-scroll">
-          {loading && (
-            <div className="state-wrap">
-              <div className="state-card">Loading business data...</div>
-            </div>
-          )}
+          {loading ? <PageLoader message="Business data load hudai cha..." /> : null}
 
           {!loading && error && (
             <div className="state-wrap">
-              <div className="state-card state-error">{error}</div>
+              <EmptyState title="Business data load bhayena" message={error} tone="error" />
             </div>
           )}
 

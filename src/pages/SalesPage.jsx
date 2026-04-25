@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { ShoppingCart } from "lucide-react";
 
 import ContentCard from "../components/common/ContentCard.jsx";
@@ -16,27 +16,27 @@ export default function SalesPage() {
 
   const { activeBusiness, activeBusinessId } = useBusiness();
 
-  useEffect(() => {
+  const loadSales = useCallback(async () => {
     if (!activeBusinessId) {
       return;
     }
 
-    const loadSales = async () => {
-      setLoading(true);
-      setError("");
+    setLoading(true);
+    setError("");
 
-      try {
-        const response = await apiClient.getSales(activeBusinessId);
-        setSalesRows(response.data || []);
-      } catch (loadError) {
-        setError(loadError.message || "Failed to load sales");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadSales();
+    try {
+      const response = await apiClient.getSales(activeBusinessId);
+      setSalesRows(response.data || []);
+    } catch (loadError) {
+      setError(loadError.message || "Sales load bhayena");
+    } finally {
+      setLoading(false);
+    }
   }, [activeBusinessId]);
+
+  useEffect(() => {
+    loadSales();
+  }, [loadSales]);
 
   const summary = useMemo(() => {
     const totalRevenue = salesRows.reduce((sum, row) => sum + Number(row.netAmount || 0), 0);
@@ -79,19 +79,16 @@ export default function SalesPage() {
     <div className="page-stack">
       <PageHeaderCard
         title="Sales Tracking"
-        subtitle="Track all business sales records across billing and invoice channels"
-        actionLabel="Refresh"
+        subtitle="Bikri records, payment method, ra revenue ekai thau ma hernus"
+        actionLabel="Data refresh"
         actionIcon={<ShoppingCart size={15} />}
-        onActionClick={() => {
-          if (activeBusinessId) {
-            apiClient.getSales(activeBusinessId).then((response) => setSalesRows(response.data || []));
-          }
-        }}
+        actionDisabled={loading}
+        onActionClick={loadSales}
       />
 
       <div className="payment-grid sales-summary-grid">
         <div className="payment-card">
-          <p className="payment-label">Total Orders</p>
+          <p className="payment-label">Total Orders (jamma)</p>
           <h5 className="payment-amount">{summary.totalOrders}</h5>
         </div>
         <div className="payment-card">
@@ -99,7 +96,7 @@ export default function SalesPage() {
           <h5 className="payment-amount">{formatCurrency(summary.totalRevenue, activeBusiness?.currencySymbol)}</h5>
         </div>
         <div className="payment-card">
-          <p className="payment-label">Average Order Value</p>
+          <p className="payment-label">Avg per Order</p>
           <h5 className="payment-amount">
             {formatCurrency(summary.avgOrderValue, activeBusiness?.currencySymbol)}
           </h5>
@@ -107,14 +104,14 @@ export default function SalesPage() {
       </div>
 
       <ContentCard>
-        {loading ? <EmptyState message="Loading sales table..." /> : null}
-        {!loading && error ? <EmptyState message={error} /> : null}
+        {loading ? <EmptyState title="Sales load hudai cha" message="Tapai ko latest sales tayar gardai..." /> : null}
+        {!loading && error ? <EmptyState title="Sales load bhayena" message={error} tone="error" /> : null}
         {!loading && !error ? (
           <DataTable
             columns={columns}
             rows={salesRows}
             title="Sales Entries"
-            searchPlaceholder="Search by invoice or payment method"
+            searchPlaceholder="Invoice no. ya payment method search garnus"
           />
         ) : null}
       </ContentCard>

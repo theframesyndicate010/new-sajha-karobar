@@ -31,7 +31,7 @@ function getTrendSummary(rows, currencySymbol) {
   if (rows.length < 2) {
     return {
       tone: "neutral",
-      text: "Add more revenue records to unlock a growth trend summary.",
+      text: "Growth trend dekhna ajhai dherai revenue records chaincha.",
     };
   }
 
@@ -42,7 +42,7 @@ function getTrendSummary(rows, currencySymbol) {
   if (!difference) {
     return {
       tone: "neutral",
-      text: "Revenue stayed steady between your first and latest period.",
+      text: "Pahilo ra latest period bich revenue lagbhag same cha.",
     };
   }
 
@@ -51,13 +51,13 @@ function getTrendSummary(rows, currencySymbol) {
   if (difference > 0) {
     return {
       tone: "up",
-      text: `Revenue increased by ${amountText} from first to latest period.`,
+      text: `Revenue ${amountText} le badheko cha (first period ko tulanama).`,
     };
   }
 
   return {
     tone: "down",
-    text: `Revenue dropped by ${amountText} from first to latest period.`,
+    text: `Revenue ${amountText} le ghateko cha (first period ko tulanama).`,
   };
 }
 
@@ -89,7 +89,7 @@ export default function ReportsPage() {
         setSummary(summaryResponse.data || null);
         setRevenueRows(revenueResponse.data?.revenueSeries || []);
       } catch (loadError) {
-        setError(loadError.message || "Failed to load reports");
+        setError(loadError.message || "Reports load bhayena");
       } finally {
         setLoading(false);
       }
@@ -136,14 +136,14 @@ export default function ReportsPage() {
     <div className="page-stack">
       <PageHeaderCard
         title="Revenue Reports"
-        subtitle="Friendly overview of revenue, cash movement, and trend performance"
+        subtitle="Revenue, cash movement, ra trend ko clear snapshot"
       />
 
       <ContentCard>
         <div className="reports-toolbar">
           <div className="reports-toolbar-copy">
-            <p className="reports-toolbar-title">View by time range</p>
-            <p className="reports-toolbar-subtitle">Choose how you want to read your revenue story.</p>
+            <p className="reports-toolbar-title">Time range choose garnus</p>
+            <p className="reports-toolbar-subtitle">Business performance compare garna period choose garnus.</p>
           </div>
 
           <div className="report-period-switch" role="tablist" aria-label="Revenue period selector">
@@ -162,8 +162,8 @@ export default function ReportsPage() {
           </div>
         </div>
 
-        {loading ? <EmptyState message="Generating report..." /> : null}
-        {!loading && error ? <EmptyState message={error} /> : null}
+        {loading ? <EmptyState title="Report banudai cha" message="Tapai ko selected period ko numbers crunch gardai..." /> : null}
+        {!loading && error ? <EmptyState title="Reports load bhayena" message={error} tone="error" /> : null}
 
         {!loading && !error && summary ? (
           <>
@@ -174,7 +174,7 @@ export default function ReportsPage() {
                 {trendSummary.tone === "neutral" ? <Calendar size={16} /> : null}
               </div>
               <div>
-                <p className="report-insight-title">Quick Insight</p>
+                <p className="report-insight-title">Quick Insight (chhito)</p>
                 <p className="report-insight-text">{trendSummary.text}</p>
               </div>
             </div>
@@ -190,7 +190,7 @@ export default function ReportsPage() {
                 <h5 className="payment-amount">
                   {formatCurrency(summary.totalRevenue, currencySymbol)}
                 </h5>
-                <p className="report-metric-note">Gross revenue across all recorded sales.</p>
+                <p className="report-metric-note">Sabai recorded sales ko gross revenue.</p>
               </div>
               <div className="payment-card report-metric-card incoming">
                 <div className="report-metric-head">
@@ -202,7 +202,7 @@ export default function ReportsPage() {
                 <h5 className="payment-amount">
                   {formatCurrency(summary.totalIncoming, currencySymbol)}
                 </h5>
-                <p className="report-metric-note">Money received into your business.</p>
+                <p className="report-metric-note">Business bhitra aayeko paisa.</p>
               </div>
               <div className="payment-card report-metric-card outgoing">
                 <div className="report-metric-head">
@@ -214,7 +214,7 @@ export default function ReportsPage() {
                 <h5 className="payment-amount">
                   {formatCurrency(summary.totalOutgoing, currencySymbol)}
                 </h5>
-                <p className="report-metric-note">Payments and expenses going out.</p>
+                <p className="report-metric-note">Business bata niskeko payment ra kharcha.</p>
               </div>
               <div className={`payment-card report-metric-card ${netPositive ? "positive" : "negative"}`}>
                 <div className="report-metric-head">
@@ -227,7 +227,7 @@ export default function ReportsPage() {
                   {formatCurrency(summary.netCashflow, currencySymbol)}
                 </h5>
                 <p className="report-metric-note">
-                  {netPositive ? "Positive balance after expenses." : "Cash outflow is higher than inflow."}
+                  {netPositive ? "Expenses pachi balance positive cha." : "Outflow inflow bhanda dherai cha."}
                 </p>
               </div>
             </div>
@@ -236,7 +236,7 @@ export default function ReportsPage() {
               <div className="reports-section-head">
                 <h3 className="reports-section-title">{periodLabelMap[period]} Revenue Trend</h3>
                 <p className="reports-section-subtitle">
-                  Simple chart view to compare period-by-period revenue.
+                  Period haru ko revenue chhito compare garnus.
                 </p>
               </div>
 
@@ -266,14 +266,14 @@ export default function ReportsPage() {
             <div className="dash-card reports-table-card">
               <div className="reports-section-head">
                 <h3 className="reports-section-title">Revenue Breakdown</h3>
-                <p className="reports-section-subtitle">Search and review period-level revenue records.</p>
+                <p className="reports-section-subtitle">Period-level revenue records search ra review garnus.</p>
               </div>
 
               <DataTable
                 columns={columns}
                 rows={revenueRows}
                 title={`${periodLabelMap[period]} Revenue`}
-                searchPlaceholder="Search period"
+                searchPlaceholder="Period search garnus"
               />
             </div>
           </>

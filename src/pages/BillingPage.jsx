@@ -17,7 +17,7 @@ export default function BillingPage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [cart, setCart] = useState([]);
-  const [customerName, setCustomerName] = useState("Walk-in Customer");
+  const [customerName, setCustomerName] = useState("Walk-in Grahak");
   const [discountType, setDiscountType] = useState("flat");
   const [discountValue, setDiscountValue] = useState(0);
   const [paymentMethod, setPaymentMethod] = useState("Cash");
@@ -34,6 +34,7 @@ export default function BillingPage() {
 
     const loadCatalog = async () => {
       try {
+        setError("");
         const response = await apiClient.getCatalog(activeBusinessId, {
           category: selectedCategory,
           search: searchTerm,
@@ -42,7 +43,7 @@ export default function BillingPage() {
         setCatalogItems(response.data || []);
         setCategories(response.meta?.categories || ["all"]);
       } catch (loadError) {
-        setError(loadError.message || "Failed to load catalog");
+        setError(loadError.message || "Catalog load bhayena");
       }
     };
 
@@ -63,8 +64,14 @@ export default function BillingPage() {
   }, [discountType, discountValue, subtotal]);
 
   const total = useMemo(() => Math.max(0, subtotal - discountAmount), [discountAmount, subtotal]);
+  const totalItemsInCart = useMemo(
+    () => cart.reduce((sum, item) => sum + Number(item.quantity || 0), 0),
+    [cart],
+  );
+  const canCheckout = Boolean(cart.length) && !submitting;
 
   const addItem = (item) => {
+    setError("");
     setCart((previous) => {
       const existing = previous.find((entry) => entry.itemId === item.id);
       if (existing) {
@@ -86,6 +93,7 @@ export default function BillingPage() {
   };
 
   const increaseQty = (itemId) => {
+    setError("");
     setCart((previous) =>
       previous.map((item) =>
         item.itemId === itemId ? { ...item, quantity: item.quantity + 1 } : item,
@@ -94,6 +102,7 @@ export default function BillingPage() {
   };
 
   const decreaseQty = (itemId) => {
+    setError("");
     setCart((previous) =>
       previous
         .map((item) =>
@@ -109,18 +118,19 @@ export default function BillingPage() {
   };
 
   const removeItem = (itemId) => {
+    setError("");
     setCart((previous) => previous.filter((item) => item.itemId !== itemId));
   };
 
   const clearOrder = () => {
     setCart([]);
     setDiscountValue(0);
-    setCustomerName("Walk-in Customer");
+    setCustomerName("Walk-in Grahak");
   };
 
   const handleCheckout = async () => {
     if (!cart.length || !activeBusinessId) {
-      setError("Add at least one item before checkout.");
+      setError("Checkout agadi kamtima 1 item add garnus.");
       return;
     }
 
@@ -141,7 +151,7 @@ export default function BillingPage() {
       clearOrder();
       navigate(`/invoices/${response.data.id}`);
     } catch (checkoutError) {
-      setError(checkoutError.message || "Checkout failed");
+      setError(checkoutError.message || "Checkout fail bhayo, feri try garnus.");
     } finally {
       setSubmitting(false);
     }
@@ -151,27 +161,27 @@ export default function BillingPage() {
     <div className="page-stack">
       <PageHeaderCard
         title="Billing System"
-        subtitle="Fast multi-business billing with invoice generation and printable bill"
-        actionLabel="Back to Dashboard"
+        subtitle="Invoice banauna sajilo flow with clear order summary"
+        actionLabel="Dashboard ma farkinu"
         actionIcon={<ArrowLeft size={15} />}
         onActionClick={() => navigate("/")}
       />
 
-      {error ? <EmptyState message={error} /> : null}
+      {error ? <EmptyState title="Sano action cha" message={error} tone="error" /> : null}
 
       <ContentCard>
         <div className="billing-container">
           <div className="menu-panel">
             <div className="menu-header">
               <div className="flex items-center justify-between gap-2">
-                <h3 className="text-lg font-bold text-slate-800 m-0">Select Item</h3>
+                <h3 className="text-lg font-bold text-slate-800 m-0">Items choose garnus</h3>
                 <span className="invoice-meta">{activeBusiness?.type || "general"}</span>
               </div>
 
               <div className="mt-3 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-2">
                 <input
                   className="filter-input"
-                  placeholder="Search by item name or SKU"
+                  placeholder="Item name ya SKU search garnus"
                   type="search"
                   value={searchTerm}
                   onChange={(event) => setSearchTerm(event.target.value)}
@@ -193,7 +203,7 @@ export default function BillingPage() {
 
             <div className="menu-items-scroll">
               {!catalogItems.length ? (
-                <EmptyState message="No items found in this category." />
+                <EmptyState message="Yo category ma item bhetiyena." />
               ) : (
                 <div className="menu-grid">
                   {catalogItems.map((item) => (
@@ -219,17 +229,20 @@ export default function BillingPage() {
           <div className="order-panel">
             <div className="order-header">
               <div className="flex flex-wrap items-center justify-between gap-2">
-                <h3 className="text-lg font-bold text-slate-800 m-0">Order Summary</h3>
-                <button className="page-header-btn" onClick={handleCheckout} type="button" disabled={submitting}>
+                <h3 className="text-lg font-bold text-slate-800 m-0">Order Summary (hisab)</h3>
+                <button className="page-header-btn" onClick={handleCheckout} type="button" disabled={!canCheckout}>
                   <BellRing size={15} />
-                  <span>{submitting ? "Processing..." : "Place Order"}</span>
+                  <span>{submitting ? "Processing..." : "Order Place garnus"}</span>
                 </button>
               </div>
+              <p className="invoice-meta" style={{ margin: "6px 0 0" }}>
+                {cart.length} line item{cart.length === 1 ? "" : "s"} ({totalItemsInCart} unit{totalItemsInCart === 1 ? "" : "s"})
+              </p>
 
               <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-2">
                 <input
                   className="filter-input"
-                  placeholder="Customer name"
+                  placeholder="Customer ko naam"
                   type="text"
                   value={customerName}
                   onChange={(event) => setCustomerName(event.target.value)}
@@ -263,7 +276,7 @@ export default function BillingPage() {
                 <tbody>
                   {!cart.length ? (
                     <tr>
-                      <td colSpan={5}>No items selected yet.</td>
+                      <td colSpan={5}>Order empty cha. Left side bata item add garnus.</td>
                     </tr>
                   ) : (
                     cart.map((item) => (
@@ -334,14 +347,14 @@ export default function BillingPage() {
               </div>
 
               <div className="checkout-row print-hidden">
-                <button className="btn-checkout" onClick={handleCheckout} type="button" disabled={submitting}>
-                  Checkout
+                <button className="btn-checkout" onClick={handleCheckout} type="button" disabled={!canCheckout}>
+                  Checkout garnus
                 </button>
                 <button className="btn-light" onClick={() => window.print()} type="button">
                   <ReceiptText size={16} />
                 </button>
                 <button className="btn-danger-light" onClick={clearOrder} type="button">
-                  Void
+                  Clear
                 </button>
               </div>
             </div>

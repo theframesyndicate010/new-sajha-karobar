@@ -116,7 +116,7 @@
       "category": "guitar",
       "price": 17000,
       "sku": "RES-BVOY3D",
-      "quantity": 13
+      "quantity": 11
     }
   ],
   "sales": [
@@ -239,6 +239,26 @@
       "netAmount": 17000,
       "paymentMethod": "Cash",
       "createdAt": "2026-04-14T14:21:13.502Z"
+    },
+    {
+      "id": "sale-VSQG1MsF",
+      "businessId": "biz-restaurant-001",
+      "invoiceId": "inv-3AXDcz3b",
+      "invoiceNumber": "INV-20260425-001",
+      "itemsCount": 1,
+      "netAmount": 17000,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-25T04:40:42.100Z"
+    },
+    {
+      "id": "sale-fW6Hglwx",
+      "businessId": "biz-restaurant-001",
+      "invoiceId": "inv-WgrbvjFp",
+      "invoiceNumber": "INV-20260425-002",
+      "itemsCount": 1,
+      "netAmount": 17000,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-25T04:41:11.881Z"
     }
   ],
   "invoices": [
@@ -589,6 +609,60 @@
       "status": "paid",
       "createdAt": "2026-04-14T14:21:13.502Z",
       "notes": ""
+    },
+    {
+      "id": "inv-3AXDcz3b",
+      "businessId": "biz-restaurant-001",
+      "invoiceNumber": "INV-20260425-001",
+      "customerName": "Walk-in Customer",
+      "discountType": "flat",
+      "discountValue": 0,
+      "taxRate": 0,
+      "subtotal": 17000,
+      "discountAmount": 0,
+      "taxAmount": 0,
+      "total": 17000,
+      "lineItems": [
+        {
+          "id": "ln-RfqwIPLo",
+          "itemId": "item-rVz0O2yS",
+          "name": "mantra-guitar",
+          "quantity": 1,
+          "rate": 17000,
+          "total": 17000
+        }
+      ],
+      "paymentMethod": "Cash",
+      "status": "paid",
+      "createdAt": "2026-04-25T04:40:42.100Z",
+      "notes": ""
+    },
+    {
+      "id": "inv-WgrbvjFp",
+      "businessId": "biz-restaurant-001",
+      "invoiceNumber": "INV-20260425-002",
+      "customerName": "Walk-in Customer",
+      "discountType": "flat",
+      "discountValue": 0,
+      "taxRate": 0,
+      "subtotal": 17000,
+      "discountAmount": 0,
+      "taxAmount": 0,
+      "total": 17000,
+      "lineItems": [
+        {
+          "id": "ln-arQFdz3e",
+          "itemId": "item-rVz0O2yS",
+          "name": "mantra-guitar",
+          "quantity": 1,
+          "rate": 17000,
+          "total": 17000
+        }
+      ],
+      "paymentMethod": "Cash",
+      "status": "paid",
+      "createdAt": "2026-04-25T04:41:11.881Z",
+      "notes": ""
     }
   ],
   "transactions": [
@@ -778,6 +852,28 @@
       "amount": 17000,
       "paymentMethod": "Cash",
       "createdAt": "2026-04-14T14:21:13.502Z"
+    },
+    {
+      "id": "txn-5A825maH",
+      "businessId": "biz-restaurant-001",
+      "type": "incoming",
+      "category": "sale",
+      "referenceId": "inv-3AXDcz3b",
+      "description": "Invoice INV-20260425-001",
+      "amount": 17000,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-25T04:40:42.100Z"
+    },
+    {
+      "id": "txn-eeze7r0M",
+      "businessId": "biz-restaurant-001",
+      "type": "incoming",
+      "category": "sale",
+      "referenceId": "inv-WgrbvjFp",
+      "description": "Invoice INV-20260425-002",
+      "amount": 17000,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-25T04:41:11.881Z"
     }
   ]
 }

@@ -30,7 +30,7 @@ export default function TransactionsPage() {
       const response = await apiClient.getTransactions(activeBusinessId);
       setBuyingRecords(response.data || []);
     } catch (loadError) {
-      setError(loadError.message || "Failed to load buying records");
+      setError(loadError.message || "Buying records load bhayena");
     } finally {
       setLoading(false);
     }
@@ -75,23 +75,23 @@ export default function TransactionsPage() {
   return (
     <div className="page-stack">
       <PageHeaderCard
-        title="Incoming & Outgoing Buying"
-        subtitle="Track buying-related cash movement along with billing-linked entries"
-        actionLabel="Add Buying"
+        title="Buying Transactions"
+        subtitle="Incoming/outgoing buying hisab, kharcha, ra payment method track garnus"
+        actionLabel="Naya Buying Entry"
         actionIcon={<PlusCircle size={15} />}
         onActionClick={() => navigate("/buying/add")}
       />
 
       <ContentCard>
-        {error ? <EmptyState message={error} /> : null}
+        {error ? <EmptyState title="Buying records load bhayena" message={error} tone="error" /> : null}
 
-        {loading ? <EmptyState message="Loading buying records..." /> : null}
+        {loading ? <EmptyState title="Buying records load hudai cha" message="Latest entries liyera aundai..." /> : null}
         {!loading ? (
           <DataTable
             columns={columns}
             rows={buyingRecords}
             title="Buying Ledger"
-            searchPlaceholder="Search category or description"
+            searchPlaceholder="Category, description, ya payment search garnus"
           />
         ) : null}
       </ContentCard>

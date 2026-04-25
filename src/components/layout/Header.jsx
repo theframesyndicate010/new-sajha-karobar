@@ -5,12 +5,12 @@ import { Menu } from "lucide-react";
 import { useBusiness } from "../../context/useBusiness.js";
 
 const topTabs = [
-  { label: "DASHBOARD", to: "/dashboard" },
-  { label: "BILLING", to: "/billing" },
-  { label: "SALES TRACKING", to: "/sales" },
-  { label: "REVENUE REPORTS", to: "/reports" },
-  { label: "BUYING", to: "/buying" },
-  { label: "INVOICES", to: "/invoices" },
+  { label: "Dashboard", to: "/dashboard" },
+  { label: "Billing", to: "/billing" },
+  { label: "Sales", to: "/sales" },
+  { label: "Reports", to: "/reports" },
+  { label: "Buying", to: "/buying" },
+  { label: "Invoices", to: "/invoices" },
 ];
 
 export default function Header({ onToggleSidebar }) {
@@ -42,20 +42,25 @@ export default function Header({ onToggleSidebar }) {
       </nav>
 
       <div className="header-actions">
-        <span className="invoice-meta">{businessTypeLabel}</span>
+        <span className="invoice-meta">Business Type: {businessTypeLabel}</span>
 
         <div className="business-select-wrap">
           <select
             aria-label="Select active business"
             className="business-select"
-            value={activeBusinessId}
+            disabled={!businesses.length}
+            value={activeBusinessId || ""}
             onChange={(event) => setActiveBusinessId(event.target.value)}
           >
-            {businesses.map((business) => (
-              <option key={business.id} value={business.id}>
-                {business.name}
-              </option>
-            ))}
+            {businesses.length ? (
+              businesses.map((business) => (
+                <option key={business.id} value={business.id}>
+                  {business.name}
+                </option>
+              ))
+            ) : (
+              <option value="">Business chaina</option>
+            )}
           </select>
         </div>
       </div>

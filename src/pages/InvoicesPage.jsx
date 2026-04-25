@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { Eye, Printer } from "lucide-react";
+import { Eye, ReceiptText } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 
 import ContentCard from "../components/common/ContentCard.jsx";
@@ -31,7 +31,7 @@ export default function InvoicesPage() {
       const response = await apiClient.getInvoices(activeBusinessId);
       setInvoices(response.data || []);
     } catch (loadError) {
-      setError(loadError.message || "Failed to load invoices");
+      setError(loadError.message || "Invoices load bhayena");
     } finally {
       setLoading(false);
     }
@@ -73,13 +73,10 @@ export default function InvoicesPage() {
       key: "actions",
       label: "Actions",
       render: (row) => (
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2" title="Invoice detail kholnus">
           <Link className="icon-btn" to={`/invoices/${row.id}`}>
             <Eye size={14} />
           </Link>
-          <button className="icon-btn" onClick={() => navigate(`/invoices/${row.id}`)} type="button">
-            <Printer size={14} />
-          </button>
         </div>
       ),
     },
@@ -89,21 +86,21 @@ export default function InvoicesPage() {
     <div className="page-stack">
       <PageHeaderCard
         title="Invoice Management"
-        subtitle="View generated invoices and open printable invoice layouts"
-        actionLabel="New Billing"
-        actionIcon={<Printer size={15} />}
+        subtitle="Generated invoices hernus ra print-ready detail kholnus"
+        actionLabel="Billing ma janus"
+        actionIcon={<ReceiptText size={15} />}
         onActionClick={() => navigate("/billing")}
       />
 
       <ContentCard>
-        {loading ? <EmptyState message="Loading invoices..." /> : null}
-        {!loading && error ? <EmptyState message={error} /> : null}
+        {loading ? <EmptyState title="Invoices load hudai cha" message="Latest invoice records liyera aundai..." /> : null}
+        {!loading && error ? <EmptyState title="Invoices load bhayena" message={error} tone="error" /> : null}
         {!loading && !error ? (
           <DataTable
             columns={columns}
             rows={invoices}
             title="Generated Invoices"
-            searchPlaceholder="Search by invoice no or customer"
+            searchPlaceholder="Invoice no., customer, ya payment method search garnus"
           />
         ) : null}
       </ContentCard>

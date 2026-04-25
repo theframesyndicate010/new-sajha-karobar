@@ -9,7 +9,7 @@ import { apiClient } from "../services/apiClient.js";
 
 export default function AddTransactionPage() {
   const navigate = useNavigate();
-  const { activeBusinessId } = useBusiness();
+  const { activeBusiness, activeBusinessId } = useBusiness();
 
   const [form, setForm] = useState({
     type: "outgoing",
@@ -24,6 +24,9 @@ export default function AddTransactionPage() {
   });
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const quantityNumber = Math.max(0, Math.floor(Number(form.quantity || 0)));
+  const amountNumber = Math.max(0, Number(form.amount || 0));
+  const estimatedTotal = Number((quantityNumber * amountNumber).toFixed(2));
 
   const updateField = (field) => (event) => {
     const nextValue = field === "addToBilling" ? event.target.checked : event.target.value;
@@ -38,32 +41,32 @@ export default function AddTransactionPage() {
     event.preventDefault();
 
     if (!activeBusinessId) {
-      setError("Please select a business first.");
+      setError("Paila business select garnus.");
       return;
     }
 
     const numericAmount = Number(form.amount || 0);
     if (!numericAmount || numericAmount <= 0) {
-      setError("Amount must be greater than 0.");
+      setError("Amount 0 bhanda mathi hunuparcha.");
       return;
     }
 
     const quantityInput = Number(form.quantity || 0);
     const quantity = Math.floor(quantityInput);
     if (!Number.isFinite(quantityInput) || quantity <= 0) {
-      setError("Quantity must be at least 1.");
+      setError("Quantity kamtima 1 hunuparcha.");
       return;
     }
 
     const normalizedCategory = String(form.category || "").trim();
     if (!normalizedCategory) {
-      setError("Category is required.");
+      setError("Category compulsory cha.");
       return;
     }
 
     const normalizedItemName = String(form.itemName || "").trim();
     if (form.addToBilling && !normalizedItemName) {
-      setError("Item name is required if you want this in Billing filter/items.");
+      setError("Billing ma sync garna item name dinu parcha.");
       return;
     }
 
@@ -96,7 +99,7 @@ export default function AddTransactionPage() {
 
       navigate("/buying");
     } catch (submitError) {
-      setError(submitError.message || "Failed to create buying entry");
+      setError(submitError.message || "Buying entry create bhayena");
     } finally {
       setSubmitting(false);
     }
@@ -105,9 +108,9 @@ export default function AddTransactionPage() {
   return (
     <div className="page-stack">
       <PageHeaderCard
-        title="Add Buying"
-        subtitle="Create buying entry and optionally push item/category/stock to Billing"
-        actionLabel="Back to Buying"
+        title="Add Buying Entry"
+        subtitle="Buying entry create garnus, ra chahe Billing ma sync garnus"
+        actionLabel="Buying ma farkinu"
         actionIcon={<ArrowLeft size={15} />}
         onActionClick={() => navigate("/buying")}
       />
@@ -124,7 +127,7 @@ export default function AddTransactionPage() {
               id="buyingItemName"
               className="filter-input"
               type="text"
-              placeholder="Shoe, guitar string, hammer"
+              placeholder="Udaharan: shoe, guitar string, hammer"
               value={form.itemName}
               onChange={updateField("itemName")}
             />
@@ -132,7 +135,7 @@ export default function AddTransactionPage() {
 
           <div className="form-field">
             <label className="form-field-label" htmlFor="txnType">
-              Buying Type
+              Transaction Type
             </label>
             <select
               id="txnType"
@@ -140,8 +143,8 @@ export default function AddTransactionPage() {
               value={form.type}
               onChange={updateField("type")}
             >
-              <option value="incoming">Incoming</option>
-              <option value="outgoing">Outgoing</option>
+              <option value="incoming">Incoming (aune)</option>
+              <option value="outgoing">Outgoing (jaane)</option>
             </select>
           </div>
 
@@ -180,7 +183,7 @@ export default function AddTransactionPage() {
             <textarea
               id="txnDescription"
               className="filter-input transaction-textarea"
-              placeholder="Buying note"
+              placeholder="Buying ko short note"
               value={form.description}
               onChange={updateField("description")}
             />
@@ -233,11 +236,14 @@ export default function AddTransactionPage() {
               value={form.quantity}
               onChange={updateField("quantity")}
             />
+            <p className="invoice-meta" style={{ margin: "0" }}>
+              Estimated total (andaj): {activeBusiness?.currencySymbol || "Rs"} {estimatedTotal.toLocaleString("en-IN", { maximumFractionDigits: 2 })}
+            </p>
           </div>
 
           <div className="form-field full-row">
             <label className="form-field-label" htmlFor="addToBillingCheckbox">
-              Add this item/category to Billing filter and item list
+              Yo item Billing catalog ma sync garnus
             </label>
             <label style={{ display: "inline-flex", alignItems: "center", gap: 8, color: "#334155" }}>
               <input
@@ -246,7 +252,7 @@ export default function AddTransactionPage() {
                 onChange={updateField("addToBilling")}
                 type="checkbox"
               />
-              Sync to Billing Catalog
+              Item name, category, SKU, price, ra quantity Billing ma add huncha
             </label>
           </div>
 
@@ -261,7 +267,7 @@ export default function AddTransactionPage() {
             </button>
             <button className="page-header-btn" type="submit" disabled={submitting}>
               <PlusCircle size={15} />
-              {submitting ? "Saving..." : "Create Buying"}
+              {submitting ? "Saving..." : "Save Buying Entry"}
             </button>
           </div>
         </form>

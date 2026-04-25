@@ -28,7 +28,7 @@ export default function InvoiceDetailPage() {
         const response = await apiClient.getInvoiceById(invoiceId);
         setInvoice(response.data);
       } catch (loadError) {
-        setError(loadError.message || "Failed to load invoice");
+        setError(loadError.message || "Invoice load bhayena");
       } finally {
         setLoading(false);
       }
@@ -38,15 +38,15 @@ export default function InvoiceDetailPage() {
   }, [invoiceId]);
 
   if (loading) {
-    return <EmptyState message="Loading invoice..." />;
+    return <EmptyState title="Invoice load hudai cha" message="Invoice details tayar gardai..." />;
   }
 
   if (error) {
-    return <EmptyState message={error} />;
+    return <EmptyState title="Invoice load bhayena" message={error} tone="error" />;
   }
 
   if (!invoice) {
-    return <EmptyState message="Invoice not found." />;
+    return <EmptyState title="Invoice bhetiyena" message="Yo invoice id ko record chaina." />;
   }
 
   return (
@@ -54,12 +54,12 @@ export default function InvoiceDetailPage() {
       <div className="flex items-center justify-between gap-2 print-hidden">
         <Link className="page-header-btn" to="/invoices">
           <ArrowLeft size={15} />
-          Back to Invoices
+          Invoices ma farkinu
         </Link>
 
         <button className="page-header-btn" onClick={() => window.print()} type="button">
           <Printer size={15} />
-          Print Invoice
+          Invoice print
         </button>
       </div>
 
@@ -68,17 +68,17 @@ export default function InvoiceDetailPage() {
           <div>
             <h3 className="invoice-title">{activeBusiness?.name || "Sajha Karobar"}</h3>
             <p className="invoice-meta">{activeBusiness?.type || "Business Management"}</p>
-            <p className="invoice-meta">Invoice Number: {invoice.invoiceNumber}</p>
+            <p className="invoice-meta">Invoice No: {invoice.invoiceNumber}</p>
           </div>
           <div className="text-right">
-            <p className="invoice-meta">Generated: {formatDateTime(invoice.createdAt)}</p>
+            <p className="invoice-meta">Generated on: {formatDateTime(invoice.createdAt)}</p>
             <p className="invoice-meta">Payment: {invoice.paymentMethod}</p>
             <p className="invoice-meta">Status: {invoice.status}</p>
           </div>
         </div>
 
         <div className="mb-4">
-          <h4 className="text-base font-semibold m-0">Bill To</h4>
+          <h4 className="text-base font-semibold m-0">Customer</h4>
           <p className="invoice-meta mt-1">{invoice.customerName}</p>
         </div>
 
