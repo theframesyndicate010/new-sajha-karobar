@@ -59,7 +59,8 @@
       "name": "Monthly Membership",
       "category": "Membership",
       "price": 3500,
-      "sku": "GYM-001"
+      "sku": "GYM-001",
+      "quantity": 0
     },
     {
       "id": "item-g-002",
@@ -75,7 +76,8 @@
       "name": "Protein Smoothie",
       "category": "Nutrition",
       "price": 450,
-      "sku": "GYM-003"
+      "sku": "GYM-003",
+      "quantity": 0
     },
     {
       "id": "item-s-001",
@@ -259,6 +261,26 @@
       "netAmount": 17000,
       "paymentMethod": "Cash",
       "createdAt": "2026-04-25T04:41:11.881Z"
+    },
+    {
+      "id": "sale-EFq96F0r",
+      "businessId": "biz-gym-001",
+      "invoiceId": "inv-eL__QRo1",
+      "invoiceNumber": "INV-20260425-003",
+      "itemsCount": 2,
+      "netAmount": 3950,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-25T05:39:53.190Z"
+    },
+    {
+      "id": "sale-rp3EW0Qs",
+      "businessId": "biz-gym-001",
+      "invoiceId": "inv-_uth9tjb",
+      "invoiceNumber": "INV-20260425-004",
+      "itemsCount": 1,
+      "netAmount": 450,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-25T05:44:34.162Z"
     }
   ],
   "invoices": [
@@ -663,6 +685,68 @@
       "status": "paid",
       "createdAt": "2026-04-25T04:41:11.881Z",
       "notes": ""
+    },
+    {
+      "id": "inv-eL__QRo1",
+      "businessId": "biz-gym-001",
+      "invoiceNumber": "INV-20260425-003",
+      "customerName": "Walk-in Grahak",
+      "discountType": "flat",
+      "discountValue": 0,
+      "taxRate": 0,
+      "subtotal": 3950,
+      "discountAmount": 0,
+      "taxAmount": 0,
+      "total": 3950,
+      "lineItems": [
+        {
+          "id": "ln-qb_zTKPE",
+          "itemId": "item-g-003",
+          "name": "Protein Smoothie",
+          "quantity": 1,
+          "rate": 450,
+          "total": 450
+        },
+        {
+          "id": "ln-g8KzgqBu",
+          "itemId": "item-g-001",
+          "name": "Monthly Membership",
+          "quantity": 1,
+          "rate": 3500,
+          "total": 3500
+        }
+      ],
+      "paymentMethod": "Cash",
+      "status": "paid",
+      "createdAt": "2026-04-25T05:39:53.190Z",
+      "notes": ""
+    },
+    {
+      "id": "inv-_uth9tjb",
+      "businessId": "biz-gym-001",
+      "invoiceNumber": "INV-20260425-004",
+      "customerName": "Walk-in Grahak",
+      "discountType": "flat",
+      "discountValue": 0,
+      "taxRate": 0,
+      "subtotal": 450,
+      "discountAmount": 0,
+      "taxAmount": 0,
+      "total": 450,
+      "lineItems": [
+        {
+          "id": "ln-bjKipyGP",
+          "itemId": "item-g-003",
+          "name": "Protein Smoothie",
+          "quantity": 1,
+          "rate": 450,
+          "total": 450
+        }
+      ],
+      "paymentMethod": "Cash",
+      "status": "paid",
+      "createdAt": "2026-04-25T05:44:34.162Z",
+      "notes": ""
     }
   ],
   "transactions": [
@@ -874,6 +958,28 @@
       "amount": 17000,
       "paymentMethod": "Cash",
       "createdAt": "2026-04-25T04:41:11.881Z"
+    },
+    {
+      "id": "txn-_FbVpm-g",
+      "businessId": "biz-gym-001",
+      "type": "incoming",
+      "category": "sale",
+      "referenceId": "inv-eL__QRo1",
+      "description": "Invoice INV-20260425-003",
+      "amount": 3950,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-25T05:39:53.190Z"
+    },
+    {
+      "id": "txn-50QckVSi",
+      "businessId": "biz-gym-001",
+      "type": "incoming",
+      "category": "sale",
+      "referenceId": "inv-_uth9tjb",
+      "description": "Invoice INV-20260425-004",
+      "amount": 450,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-25T05:44:34.162Z"
     }
   ]
 }

@@ -114,16 +114,16 @@ export default function DataTable({
           <table className="premium-table">
             <thead>
               <tr>
-                {columns.map((column) => (
-                  <th key={column.key}>{column.label}</th>
+                {columns.map((column, columnIndex) => (
+                  <th key={column.key || `${column.label}-${columnIndex}`}>{column.label}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {paginatedRows.map((row) => (
                 <tr key={rowKey(row)}>
-                  {columns.map((column) => (
-                    <td key={`${rowKey(row)}-${column.key}`}>
+                  {columns.map((column, columnIndex) => (
+                    <td key={`${rowKey(row)}-${column.key || columnIndex}`}>
                       {column.render ? column.render(row) : row[column.key]}
                     </td>
                   ))}

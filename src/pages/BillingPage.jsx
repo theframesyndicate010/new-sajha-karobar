@@ -263,48 +263,92 @@ export default function BillingPage() {
             </div>
 
             <div className="order-list-scroll">
-              <table className="premium-table">
-                <thead>
-                  <tr>
-                    <th>Item Name</th>
-                    <th>Rate</th>
-                    <th>Quantity</th>
-                    <th>Amount</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {!cart.length ? (
-                    <tr>
-                      <td colSpan={5}>Order empty cha. Left side bata item add garnus.</td>
-                    </tr>
-                  ) : (
-                    cart.map((item) => (
-                      <tr key={item.itemId}>
-                        <td>{item.name}</td>
-                        <td>{formatCurrency(item.rate, activeBusiness?.currencySymbol)}</td>
-                        <td>
-                          <div className="qty-control">
-                            <button className="qty-btn" onClick={() => decreaseQty(item.itemId)} type="button">
-                              -
-                            </button>
-                            <span>{item.quantity}</span>
-                            <button className="qty-btn" onClick={() => increaseQty(item.itemId)} type="button">
-                              <Plus size={13} />
-                            </button>
-                          </div>
-                        </td>
-                        <td>{formatCurrency(item.rate * item.quantity, activeBusiness?.currencySymbol)}</td>
-                        <td>
-                          <button className="qty-btn" onClick={() => removeItem(item.itemId)} type="button">
-                            <Trash2 size={13} />
+              <div className="billing-cart-mobile" role="list" aria-label="Order summary items">
+                {!cart.length ? (
+                  <p className="billing-cart-empty">Order empty cha. Left side bata item add garnus.</p>
+                ) : (
+                  cart.map((item) => (
+                    <article className="billing-cart-item" key={item.itemId} role="listitem">
+                      <div className="billing-cart-item-top">
+                        <p className="billing-cart-item-name">{item.name}</p>
+                        <p className="billing-cart-item-amount">
+                          {formatCurrency(item.rate * item.quantity, activeBusiness?.currencySymbol)}
+                        </p>
+                      </div>
+
+                      <p className="billing-cart-item-meta">
+                        Rate: {formatCurrency(item.rate, activeBusiness?.currencySymbol)}
+                      </p>
+
+                      <div className="billing-cart-item-actions">
+                        <div className="qty-control">
+                          <button className="qty-btn" onClick={() => decreaseQty(item.itemId)} type="button">
+                            -
                           </button>
-                        </td>
+                          <span>{item.quantity}</span>
+                          <button className="qty-btn" onClick={() => increaseQty(item.itemId)} type="button">
+                            <Plus size={13} />
+                          </button>
+                        </div>
+
+                        <button
+                          aria-label={`Remove ${item.name}`}
+                          className="qty-btn billing-cart-remove"
+                          onClick={() => removeItem(item.itemId)}
+                          type="button"
+                        >
+                          <Trash2 size={13} />
+                        </button>
+                      </div>
+                    </article>
+                  ))
+                )}
+              </div>
+
+              <div className="billing-cart-table-wrap">
+                <table className="premium-table">
+                  <thead>
+                    <tr>
+                      <th>Item Name</th>
+                      <th>Rate</th>
+                      <th>Quantity</th>
+                      <th>Amount</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {!cart.length ? (
+                      <tr>
+                        <td colSpan={5}>Order empty cha. Left side bata item add garnus.</td>
                       </tr>
-                    ))
-                  )}
-                </tbody>
-              </table>
+                    ) : (
+                      cart.map((item) => (
+                        <tr key={item.itemId}>
+                          <td>{item.name}</td>
+                          <td>{formatCurrency(item.rate, activeBusiness?.currencySymbol)}</td>
+                          <td>
+                            <div className="qty-control">
+                              <button className="qty-btn" onClick={() => decreaseQty(item.itemId)} type="button">
+                                -
+                              </button>
+                              <span>{item.quantity}</span>
+                              <button className="qty-btn" onClick={() => increaseQty(item.itemId)} type="button">
+                                <Plus size={13} />
+                              </button>
+                            </div>
+                          </td>
+                          <td>{formatCurrency(item.rate * item.quantity, activeBusiness?.currencySymbol)}</td>
+                          <td>
+                            <button className="qty-btn" onClick={() => removeItem(item.itemId)} type="button">
+                              <Trash2 size={13} />
+                            </button>
+                          </td>
+                        </tr>
+                      ))
+                    )}
+                  </tbody>
+                </table>
+              </div>
             </div>
 
             <div className="order-footer billing-sticky-footer">
