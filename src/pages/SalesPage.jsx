@@ -1,0 +1,123 @@
+import { useEffect, useMemo, useState } from "react";
+import { ShoppingCart } from "lucide-react";
+
+import ContentCard from "../components/common/ContentCard.jsx";
+import DataTable from "../components/common/DataTable.jsx";
+import EmptyState from "../components/common/EmptyState.jsx";
+import PageHeaderCard from "../components/common/PageHeaderCard.jsx";
+import { useBusiness } from "../context/useBusiness.js";
+import { apiClient } from "../services/apiClient.js";
+import { formatCurrency, formatDateTime } from "../services/formatters.js";
+
+export default function SalesPage() {
+  const [salesRows, setSalesRows] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const { activeBusiness, activeBusinessId } = useBusiness();
+
+  useEffect(() => {
+    if (!activeBusinessId) {
+      return;
+    }
+
+    const loadSales = async () => {
+      setLoading(true);
+      setError("");
+
+      try {
+        const response = await apiClient.getSales(activeBusinessId);
+        setSalesRows(response.data || []);
+      } catch (loadError) {
+        setError(loadError.message || "Failed to load sales");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadSales();
+  }, [activeBusinessId]);
+
+  const summary = useMemo(() => {
+    const totalRevenue = salesRows.reduce((sum, row) => sum + Number(row.netAmount || 0), 0);
+    const totalOrders = salesRows.length;
+
+    return {
+      totalRevenue,
+      totalOrders,
+      avgOrderValue: totalOrders ? totalRevenue / totalOrders : 0,
+    };
+  }, [salesRows]);
+
+  const columns = [
+    {
+      key: "invoiceNumber",
+      label: "Invoice",
+      render: (row) => row.invoiceNumber || "Manual Sale",
+    },
+    {
+      key: "itemsCount",
+      label: "Items",
+    },
+    {
+      key: "paymentMethod",
+      label: "Payment Method",
+    },
+    {
+      key: "netAmount",
+      label: "Net Amount",
+      render: (row) => formatCurrency(row.netAmount, activeBusiness?.currencySymbol),
+    },
+    {
+      key: "createdAt",
+      label: "Date",
+      render: (row) => formatDateTime(row.createdAt),
+    },
+  ];
+
+  return (
+    <div className="page-stack">
+      <PageHeaderCard
+        title="Sales Tracking"
+        subtitle="Track all business sales records across billing and invoice channels"
+        actionLabel="Refresh"
+        actionIcon={<ShoppingCart size={15} />}
+        onActionClick={() => {
+          if (activeBusinessId) {
+            apiClient.getSales(activeBusinessId).then((response) => setSalesRows(response.data || []));
+          }
+        }}
+      />
+
+      <div className="payment-grid sales-summary-grid">
+        <div className="payment-card">
+          <p className="payment-label">Total Orders</p>
+          <h5 className="payment-amount">{summary.totalOrders}</h5>
+        </div>
+        <div className="payment-card">
+          <p className="payment-label">Total Revenue</p>
+          <h5 className="payment-amount">{formatCurrency(summary.totalRevenue, activeBusiness?.currencySymbol)}</h5>
+        </div>
+        <div className="payment-card">
+          <p className="payment-label">Average Order Value</p>
+          <h5 className="payment-amount">
+            {formatCurrency(summary.avgOrderValue, activeBusiness?.currencySymbol)}
+          </h5>
+        </div>
+      </div>
+
+      <ContentCard>
+        {loading ? <EmptyState message="Loading sales table..." /> : null}
+        {!loading && error ? <EmptyState message={error} /> : null}
+        {!loading && !error ? (
+          <DataTable
+            columns={columns}
+            rows={salesRows}
+            title="Sales Entries"
+            searchPlaceholder="Search by invoice or payment method"
+          />
+        ) : null}
+      </ContentCard>
+    </div>
+  );
+}
