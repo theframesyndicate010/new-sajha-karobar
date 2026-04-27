@@ -24,7 +24,7 @@ The business logic is generalized so the same app supports restaurant, gym, and 
 - Frontend: React + React Router + Tailwind CSS + custom CSS tokens
 - Charts: Chart.js + react-chartjs-2
 - Backend: Node.js + Express
-- Data Store: JSON persistence (`server/data/db.json`)
+- Data Store: JSON persistence (`backend/data/db.json`)
 
 ## Frontend Production Hardening
 
@@ -59,9 +59,10 @@ The frontend is now configured as a PWA using a standards-based manifest + servi
 - Use HTTPS in production (required by service workers and installability checks)
 - `localhost` works for development testing
 
-Environment variables (`.env.example`):
+Environment variables (`frontend/.env`):
 
 - `VITE_API_BASE_URL` API base path
+- `VITE_BACKEND_TARGET` backend proxy target for Vite dev server
 - `VITE_API_TIMEOUT_MS` request timeout in milliseconds
 - `VITE_API_RETRY_COUNT` retry count for safe GET/HEAD requests
 
@@ -90,7 +91,7 @@ sajha-karobar-system/
 			formatters.js
 		styles/
 			design-system.css
-	server/
+	backend/
 		data/
 			db.json
 		routes/
@@ -140,15 +141,17 @@ sajha-karobar-system/
 
 ## Run Locally
 
-Install dependencies:
+Install dependencies for both apps:
+
+```bash
+npm install --prefix backend
+npm install --prefix frontend
+```
+
+From project root (`new-sajha-karobar`), run frontend + backend together:
 
 ```bash
 npm install
-```
-
-Run frontend + backend together:
-
-```bash
 npm run dev
 ```
 
@@ -167,6 +170,28 @@ Run backend only (production-style API start):
 npm run start
 ```
 
+## Supabase Integration
+
+Backend now supports two storage providers behind the same API:
+
+- `json` (default): uses `backend/data/db.json`
+- `supabase`: stores full app state in Supabase table `app_state`
+
+### Configure
+
+1. Copy `backend/.env.example` to `backend/.env`.
+2. Set these values in `backend/.env`:
+ - `DB_PROVIDER=supabase`
+ - `SUPABASE_URL=...`
+ - `SUPABASE_SERVICE_ROLE_KEY=...`
+ - Optional: `SUPABASE_STATE_TABLE=app_state`, `SUPABASE_STATE_KEY=primary`
+3. In Supabase SQL editor, run `backend/supabase/schema.sql`.
+4. Start app with `npm run dev`.
+
+Health check includes active provider:
+
+- `GET /api/health` returns `provider: "json" | "supabase"`
+
 ## Printing Invoices
 
 - Open an invoice detail page from Invoices module.
@@ -177,4 +202,4 @@ npm run start
 
 - Add new business types by inserting business records and catalog mappings.
 - Move from JSON to SQL/NoSQL by replacing `db.service.js` with repository adapters.
-- Add authentication/authorization in `server/app.js` middleware layer.
+- Add authentication/authorization in `backend/app.js` middleware layer.
