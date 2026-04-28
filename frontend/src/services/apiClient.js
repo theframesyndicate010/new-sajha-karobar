@@ -186,4 +186,14 @@ export const apiClient = {
     request(
       `/reports/revenue?businessId=${encodeURIComponent(businessId)}&period=${encodeURIComponent(period)}`,
     ),
+
+  getHealth: () => request("/health"),
+
+  getPreferences: () => request("/preferences"),
+
+  updatePreferences: (payload) =>
+    request("/preferences", {
+      method: "PUT",
+      body: JSON.stringify(payload),
+    }),
 };
