@@ -51,7 +51,7 @@ export default function BillingPage() {
   }, [activeBusinessId, selectedCategory, searchTerm]);
 
   const subtotal = useMemo(
-    () => cart.reduce((sum, item) => sum + item.rate * item.quantity, 0),
+    () => cart.reduce((sum, item) => sum + Number(item.rate || 0) * Number(item.quantity || 0), 0),
     [cart],
   );
 
@@ -85,7 +85,7 @@ export default function BillingPage() {
         {
           itemId: item.id,
           name: item.name,
-          rate: Number(item.price || 0),
+          rate: String(item.price || 0),
           quantity: 1,
         },
       ];
@@ -97,6 +97,15 @@ export default function BillingPage() {
     setCart((previous) =>
       previous.map((item) =>
         item.itemId === itemId ? { ...item, quantity: item.quantity + 1 } : item,
+      ),
+    );
+  };
+
+  const updateRate = (itemId, nextRate) => {
+    setError("");
+    setCart((previous) =>
+      previous.map((item) =>
+        item.itemId === itemId ? { ...item, rate: nextRate } : item,
       ),
     );
   };
@@ -145,7 +154,10 @@ export default function BillingPage() {
         discountType,
         discountValue: Number(discountValue || 0),
         taxRate: 0,
-        lineItems: cart,
+        lineItems: cart.map((item) => ({
+          ...item,
+          rate: Number(item.rate || 0),
+        })),
       });
 
       clearOrder();
@@ -175,7 +187,6 @@ export default function BillingPage() {
             <div className="menu-header">
               <div className="flex items-center justify-between gap-2">
                 <h3 className="text-lg font-bold text-slate-800 m-0">Items choose garnus</h3>
-                <span className="invoice-meta">{activeBusiness?.type || "general"}</span>
               </div>
 
               <div className="mt-3 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-2">
@@ -267,41 +278,58 @@ export default function BillingPage() {
                 {!cart.length ? (
                   <p className="billing-cart-empty">Order empty cha. Left side bata item add garnus.</p>
                 ) : (
-                  cart.map((item) => (
-                    <article className="billing-cart-item" key={item.itemId} role="listitem">
-                      <div className="billing-cart-item-top">
-                        <p className="billing-cart-item-name">{item.name}</p>
-                        <p className="billing-cart-item-amount">
-                          {formatCurrency(item.rate * item.quantity, activeBusiness?.currencySymbol)}
-                        </p>
-                      </div>
+                  cart.map((item) => {
+                    const rateNumber = Number(item.rate || 0);
+                    const lineTotal = rateNumber * item.quantity;
+                    const rateInputId = `billing-rate-${item.itemId}`;
 
-                      <p className="billing-cart-item-meta">
-                        Rate: {formatCurrency(item.rate, activeBusiness?.currencySymbol)}
-                      </p>
-
-                      <div className="billing-cart-item-actions">
-                        <div className="qty-control">
-                          <button className="qty-btn" onClick={() => decreaseQty(item.itemId)} type="button">
-                            -
-                          </button>
-                          <span>{item.quantity}</span>
-                          <button className="qty-btn" onClick={() => increaseQty(item.itemId)} type="button">
-                            <Plus size={13} />
-                          </button>
+                    return (
+                      <article className="billing-cart-item" key={item.itemId} role="listitem">
+                        <div className="billing-cart-item-top">
+                          <p className="billing-cart-item-name">{item.name}</p>
+                          <p className="billing-cart-item-amount">
+                            {formatCurrency(lineTotal, activeBusiness?.currencySymbol)}
+                          </p>
                         </div>
 
-                        <button
-                          aria-label={`Remove ${item.name}`}
-                          className="qty-btn billing-cart-remove"
-                          onClick={() => removeItem(item.itemId)}
-                          type="button"
-                        >
-                          <Trash2 size={13} />
-                        </button>
-                      </div>
-                    </article>
-                  ))
+                        <div className="billing-rate-row">
+                          <label className="billing-cart-item-meta" htmlFor={rateInputId}>
+                            Custom sell rate
+                          </label>
+                          <input
+                            id={rateInputId}
+                            className="filter-input billing-rate-input"
+                            type="number"
+                            min={0}
+                            step="0.01"
+                            value={item.rate}
+                            onChange={(event) => updateRate(item.itemId, event.target.value)}
+                          />
+                        </div>
+
+                        <div className="billing-cart-item-actions">
+                          <div className="qty-control">
+                            <button className="qty-btn" onClick={() => decreaseQty(item.itemId)} type="button">
+                              -
+                            </button>
+                            <span>{item.quantity}</span>
+                            <button className="qty-btn" onClick={() => increaseQty(item.itemId)} type="button">
+                              <Plus size={13} />
+                            </button>
+                          </div>
+
+                          <button
+                            aria-label={`Remove ${item.name}`}
+                            className="qty-btn billing-cart-remove"
+                            onClick={() => removeItem(item.itemId)}
+                            type="button"
+                          >
+                            <Trash2 size={13} />
+                          </button>
+                        </div>
+                      </article>
+                    );
+                  })
                 )}
               </div>
 
@@ -310,7 +338,7 @@ export default function BillingPage() {
                   <thead>
                     <tr>
                       <th>Item Name</th>
-                      <th>Rate</th>
+                      <th>Sell Rate</th>
                       <th>Quantity</th>
                       <th>Amount</th>
                       <th>Action</th>
@@ -322,29 +350,44 @@ export default function BillingPage() {
                         <td colSpan={5}>Order empty cha. Left side bata item add garnus.</td>
                       </tr>
                     ) : (
-                      cart.map((item) => (
-                        <tr key={item.itemId}>
-                          <td>{item.name}</td>
-                          <td>{formatCurrency(item.rate, activeBusiness?.currencySymbol)}</td>
-                          <td>
-                            <div className="qty-control">
-                              <button className="qty-btn" onClick={() => decreaseQty(item.itemId)} type="button">
-                                -
+                      cart.map((item) => {
+                        const rateNumber = Number(item.rate || 0);
+                        const lineTotal = rateNumber * item.quantity;
+
+                        return (
+                          <tr key={item.itemId}>
+                            <td>{item.name}</td>
+                            <td>
+                              <input
+                                aria-label={`Custom sell rate for ${item.name}`}
+                                className="filter-input billing-rate-input"
+                                type="number"
+                                min={0}
+                                step="0.01"
+                                value={item.rate}
+                                onChange={(event) => updateRate(item.itemId, event.target.value)}
+                              />
+                            </td>
+                            <td>
+                              <div className="qty-control">
+                                <button className="qty-btn" onClick={() => decreaseQty(item.itemId)} type="button">
+                                  -
+                                </button>
+                                <span>{item.quantity}</span>
+                                <button className="qty-btn" onClick={() => increaseQty(item.itemId)} type="button">
+                                  <Plus size={13} />
+                                </button>
+                              </div>
+                            </td>
+                            <td>{formatCurrency(lineTotal, activeBusiness?.currencySymbol)}</td>
+                            <td>
+                              <button className="qty-btn" onClick={() => removeItem(item.itemId)} type="button">
+                                <Trash2 size={13} />
                               </button>
-                              <span>{item.quantity}</span>
-                              <button className="qty-btn" onClick={() => increaseQty(item.itemId)} type="button">
-                                <Plus size={13} />
-                              </button>
-                            </div>
-                          </td>
-                          <td>{formatCurrency(item.rate * item.quantity, activeBusiness?.currencySymbol)}</td>
-                          <td>
-                            <button className="qty-btn" onClick={() => removeItem(item.itemId)} type="button">
-                              <Trash2 size={13} />
-                            </button>
-                          </td>
-                        </tr>
-                      ))
+                            </td>
+                          </tr>
+                        );
+                      })
                     )}
                   </tbody>
                 </table>

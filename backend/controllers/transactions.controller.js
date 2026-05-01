@@ -34,6 +34,7 @@ export async function createTransaction(req, res, next) {
     }
 
     const type = req.body.type === "outgoing" ? "outgoing" : "incoming";
+    const rawItemName = typeof req.body.itemName === "string" ? req.body.itemName.trim() : "";
 
     const transaction = {
       id: `txn-${nanoid(8)}`,
@@ -41,6 +42,7 @@ export async function createTransaction(req, res, next) {
       type,
       category: req.body.category || "general",
       referenceId: req.body.referenceId || null,
+      itemName: rawItemName || null,
       description: req.body.description || "Manual transaction",
       amount,
       paymentMethod: req.body.paymentMethod || "Cash",

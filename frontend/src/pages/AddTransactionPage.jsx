@@ -81,6 +81,7 @@ export default function AddTransactionPage() {
         businessId: activeBusinessId,
         type: form.type,
         category: normalizedCategory,
+        itemName: normalizedItemName,
         description: `${buyingDescription} (Qty: ${quantity})`,
         paymentMethod: form.paymentMethod,
         amount: transactionAmount,

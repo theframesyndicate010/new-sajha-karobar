@@ -1,17 +1,43 @@
-import { useMemo } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { Menu } from "lucide-react";
+import { LogOut, Menu, UserCircle2 } from "lucide-react";
 
 import { topTabNavigation } from "../../app/page-config.js";
 import { useBusiness } from "../../context/useBusiness.js";
 
 export default function Header({ onToggleSidebar }) {
-  const { businesses, activeBusinessId, setActiveBusinessId, activeBusiness } = useBusiness();
+  const { activeBusiness } = useBusiness();
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const profileRef = useRef(null);
 
-  const businessTypeLabel = useMemo(() => {
-    const type = activeBusiness?.type || "business";
-    return `${type.charAt(0).toUpperCase()}${type.slice(1)}`;
-  }, [activeBusiness]);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (profileRef.current && !profileRef.current.contains(event.target)) {
+        setIsProfileOpen(false);
+      }
+    };
+
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        setIsProfileOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("sajha-karobar-active-business");
+    window.location.assign("/");
+  };
+
+  const displayName = activeBusiness?.name || "Sajha Karobar";
 
   return (
     <header className="topbar">
@@ -34,26 +60,32 @@ export default function Header({ onToggleSidebar }) {
       </nav>
 
       <div className="header-actions">
-        <span className="invoice-meta">Business Type: {businessTypeLabel}</span>
-
-        <div className="business-select-wrap">
-          <select
-            aria-label="Select active business"
-            className="business-select"
-            disabled={!businesses.length}
-            value={activeBusinessId || ""}
-            onChange={(event) => setActiveBusinessId(event.target.value)}
+        <span className="invoice-meta">{activeBusiness?.name || "Business selected chaina"}</span>
+        <div className="profile-wrap" ref={profileRef}>
+          <button
+            aria-expanded={isProfileOpen}
+            aria-haspopup="menu"
+            aria-label="Open profile menu"
+            className="profile-trigger"
+            onClick={() => setIsProfileOpen((previous) => !previous)}
+            type="button"
           >
-            {businesses.length ? (
-              businesses.map((business) => (
-                <option key={business.id} value={business.id}>
-                  {business.name}
-                </option>
-              ))
-            ) : (
-              <option value="">Business chaina</option>
-            )}
-          </select>
+            <UserCircle2 size={18} />
+          </button>
+          <div className={`profile-popup ${isProfileOpen ? "show" : ""}`} role="menu">
+            <div className="popup-header">
+              <div className="popup-avatar">
+                <UserCircle2 size={20} />
+              </div>
+              <h6>{displayName}</h6>
+              <p>Profile</p>
+            </div>
+            <div className="popup-footer">
+              <button onClick={handleLogout} type="button">
+                <LogOut size={16} /> Logout
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </header>

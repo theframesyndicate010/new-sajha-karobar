@@ -1,8 +1,6 @@
 import { useMemo } from "react";
 import { NavLink } from "react-router-dom";
-import {
-  BarChart3,
-} from "lucide-react";
+import { LogOut } from "lucide-react";
 import { sidebarNavigation } from "../../app/page-config.js";
 
 function SidebarItem({ item, isCollapsed, onNavigate }) {
@@ -28,6 +26,11 @@ function SidebarItem({ item, isCollapsed, onNavigate }) {
 }
 
 export default function Sidebar({ isDesktopExpanded, isMobile, isMobileOpen, onNavigate }) {
+  const handleLogout = () => {
+    localStorage.removeItem("sajha-karobar-active-business");
+    window.location.assign("/");
+  };
+
   const isExpanded = useMemo(() => {
     if (isMobile) {
       return isMobileOpen;
@@ -40,8 +43,7 @@ export default function Sidebar({ isDesktopExpanded, isMobile, isMobileOpen, onN
     <aside className={`sidebar ${isExpanded ? "expanded" : ""} ${isMobileOpen ? "mobile-open" : ""}`}>
       <div className="sidebar-brand">
         <div className="brand-box">
-          <BarChart3 size={16} />
-          <p>SAJHA</p>
+          <img src="/logo.png" alt="Sajha Karobar" />
         </div>
         <h4 className="nav-text">Sajha Karobar</h4>
       </div>
@@ -56,6 +58,24 @@ export default function Sidebar({ isDesktopExpanded, isMobile, isMobileOpen, onN
           />
         ))}
       </ul>
+
+      <div className="sidebar-footer">
+        <button
+          aria-label="Logout"
+          className={`nav-link nav-link-btn ${!isExpanded ? "collapsed" : ""}`}
+          data-tooltip="Logout"
+          onClick={() => {
+            if (onNavigate) {
+              onNavigate();
+            }
+            handleLogout();
+          }}
+          type="button"
+        >
+          <LogOut size={18} strokeWidth={2.2} />
+          <span className="nav-text">Logout</span>
+        </button>
+      </div>
     </aside>
   );
 }

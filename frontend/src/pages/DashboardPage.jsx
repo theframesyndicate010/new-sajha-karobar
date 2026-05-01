@@ -104,11 +104,17 @@ export default function DashboardPage() {
     const vacantTables = Number(snapshot?.vacantTables ?? 15);
     const reservedTables = Number(snapshot?.reservedTables ?? 1);
     const totalTables = vacantTables + reservedTables || 16;
+    const todaySalesAmount = Number(snapshot?.todaySalesAmount ?? 0);
+    const todayIncoming = Number(snapshot?.todayIncoming ?? 0);
+    const todayOutgoing = Number(snapshot?.todayOutgoing ?? 0);
+    const todayNetSell = Number((todayIncoming - todayOutgoing).toFixed(2));
+    const todayNetSales = todaySalesAmount > 0 ? todaySalesAmount : todayIncoming;
 
     return {
-      todayNetSales: Number(snapshot?.todaySalesAmount ?? snapshot?.todayIncoming ?? 0),
-      todayPurchase: Number(snapshot?.todayOutgoing ?? 0),
-      totalSalesAmount: Number(snapshot?.todaySalesAmount ?? 0),
+      todayNetSales,
+      todayNetSell,
+      todayPurchase: todayOutgoing,
+      totalSalesAmount: todaySalesAmount,
       totalDiscountAmount: Number(snapshot?.todayDiscountAmount ?? 0),
       averageOrderValue: Number(snapshot?.avgInvoiceValue ?? 0),
       ready,
@@ -288,6 +294,16 @@ export default function DashboardPage() {
             </div>
             <span className="dash-stat-icon" aria-hidden="true">
               <IndianRupee size={16} />
+            </span>
+          </article>
+
+          <article className="dash-stat-badge bg-navy">
+            <div className="dash-stat-copy">
+              <span className="dash-stat-label">Today Net Sell</span>
+              <span className="dash-stat-value">{formatMoney(totals.todayNetSell, currencySymbol, 0)}</span>
+            </div>
+            <span className="dash-stat-icon" aria-hidden="true">
+              <TrendingUp size={16} />
             </span>
           </article>
 

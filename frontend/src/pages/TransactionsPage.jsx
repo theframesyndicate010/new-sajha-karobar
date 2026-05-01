@@ -53,6 +53,12 @@ export default function TransactionsPage() {
       label: "Category",
     },
     {
+      key: "itemName",
+      label: "Item Name",
+      render: (row) => row.itemName || "-",
+      searchAccessor: (row) => row.itemName || "",
+    },
+    {
       key: "description",
       label: "Description",
     },
@@ -91,7 +97,7 @@ export default function TransactionsPage() {
             columns={columns}
             rows={buyingRecords}
             title="Buying Ledger"
-            searchPlaceholder="Category, description, ya payment search garnus"
+            searchPlaceholder="Item name, category, description, ya payment search garnus"
           />
         ) : null}
       </ContentCard>

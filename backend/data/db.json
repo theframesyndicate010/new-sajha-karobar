@@ -1,0 +1,1170 @@
+{
+  "businesses": [
+    {
+      "id": "biz-restaurant-001",
+      "name": "Sajha Karobar",
+      "type": "restaurant",
+      "currencyCode": "NPR",
+      "currencySymbol": "Rs",
+      "status": "active",
+      "createdAt": "2026-04-01T08:15:00.000Z"
+    },
+    {
+      "id": "biz-gym-001",
+      "name": "Motion Peak Fitness",
+      "type": "gym",
+      "currencyCode": "NPR",
+      "currencySymbol": "Rs",
+      "status": "active",
+      "createdAt": "2026-04-02T08:15:00.000Z"
+    },
+    {
+      "id": "biz-retail-001",
+      "name": "Metro Mart",
+      "type": "retail",
+      "currencyCode": "NPR",
+      "currencySymbol": "Rs",
+      "status": "active",
+      "createdAt": "2026-04-03T08:15:00.000Z"
+    }
+  ],
+  "catalogItems": [
+    {
+      "id": "item-r-001",
+      "businessType": "restaurant",
+      "name": "Chicken Momo",
+      "category": "Food",
+      "price": 220,
+      "sku": "REST-001"
+    },
+    {
+      "id": "item-r-002",
+      "businessType": "restaurant",
+      "name": "Mocha Coffee",
+      "category": "Beverage",
+      "price": 180,
+      "sku": "REST-002"
+    },
+    {
+      "id": "item-r-003",
+      "businessType": "restaurant",
+      "name": "Paneer Sizzler",
+      "category": "Food",
+      "price": 480,
+      "sku": "REST-003"
+    },
+    {
+      "id": "item-g-001",
+      "businessType": "gym",
+      "name": "Monthly Membership",
+      "category": "Membership",
+      "price": 3500,
+      "sku": "GYM-001",
+      "quantity": 0
+    },
+    {
+      "id": "item-g-002",
+      "businessType": "gym",
+      "name": "Personal Training Session",
+      "category": "Service",
+      "price": 1200,
+      "sku": "GYM-002"
+    },
+    {
+      "id": "item-g-003",
+      "businessType": "gym",
+      "name": "Protein Smoothie",
+      "category": "Nutrition",
+      "price": 450,
+      "sku": "GYM-003",
+      "quantity": 0
+    },
+    {
+      "id": "item-s-001",
+      "businessType": "retail",
+      "name": "Wireless Mouse",
+      "category": "Electronics",
+      "price": 1499,
+      "sku": "RTL-001"
+    },
+    {
+      "id": "item-s-002",
+      "businessType": "retail",
+      "name": "Notebook Set",
+      "category": "Stationery",
+      "price": 399,
+      "sku": "RTL-002",
+      "quantity": 0
+    },
+    {
+      "id": "item-s-003",
+      "businessType": "retail",
+      "name": "Water Bottle",
+      "category": "Lifestyle",
+      "price": 699,
+      "sku": "RTL-003",
+      "quantity": 0
+    },
+    {
+      "id": "item-all-001",
+      "businessType": "all",
+      "name": "Service Charge",
+      "category": "General",
+      "price": 100,
+      "sku": "GEN-001"
+    },
+    {
+      "id": "item-rVz0O2yS",
+      "businessType": "restaurant",
+      "name": "mantra-guitar",
+      "category": "guitar",
+      "price": 17000,
+      "sku": "RES-BVOY3D",
+      "quantity": 11
+    },
+    {
+      "id": "item-fudrI-fZ",
+      "businessType": "retail",
+      "name": "pipe",
+      "category": "house hold",
+      "price": 1400,
+      "quantity": 23,
+      "sku": "50002"
+    }
+  ],
+  "sales": [
+    {
+      "id": "sale-001",
+      "businessId": "biz-restaurant-001",
+      "invoiceId": "inv-001",
+      "invoiceNumber": "INV-20260414-001",
+      "itemsCount": 3,
+      "netAmount": 860,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-14T06:30:00.000Z"
+    },
+    {
+      "id": "sale-002",
+      "businessId": "biz-gym-001",
+      "invoiceId": "inv-002",
+      "invoiceNumber": "INV-20260414-002",
+      "itemsCount": 1,
+      "netAmount": 3500,
+      "paymentMethod": "Card",
+      "createdAt": "2026-04-14T07:15:00.000Z"
+    },
+    {
+      "id": "sale-003",
+      "businessId": "biz-retail-001",
+      "invoiceId": "inv-003",
+      "invoiceNumber": "INV-20260413-001",
+      "itemsCount": 2,
+      "netAmount": 1898,
+      "paymentMethod": "E-Payment",
+      "createdAt": "2026-04-13T12:05:00.000Z"
+    },
+    {
+      "id": "sale-Sz26Os6r",
+      "businessId": "biz-restaurant-001",
+      "invoiceId": "inv-Qx_ktVoO",
+      "invoiceNumber": "INV-20260414-003",
+      "itemsCount": 1,
+      "netAmount": 220,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-14T09:19:14.783Z"
+    },
+    {
+      "id": "sale-qMaHQnjV",
+      "businessId": "biz-restaurant-001",
+      "invoiceId": "inv-HAqEErh0",
+      "invoiceNumber": "INV-20260414-004",
+      "itemsCount": 1,
+      "netAmount": 220,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-14T09:19:22.785Z"
+    },
+    {
+      "id": "sale-AUm5Go8x",
+      "businessId": "biz-restaurant-001",
+      "invoiceId": "inv-xF1T_wqM",
+      "invoiceNumber": "INV-20260414-005",
+      "itemsCount": 1,
+      "netAmount": 100,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-14T09:19:33.477Z"
+    },
+    {
+      "id": "sale-WV5RQ84z",
+      "businessId": "biz-restaurant-001",
+      "invoiceId": "inv-oII3ypdy",
+      "invoiceNumber": "INV-20260414-006",
+      "itemsCount": 1,
+      "netAmount": 100,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-14T09:19:37.843Z"
+    },
+    {
+      "id": "sale-Y7eyjxd1",
+      "businessId": "biz-restaurant-001",
+      "invoiceId": "inv-mHpu_9fg",
+      "invoiceNumber": "INV-20260414-007",
+      "itemsCount": 1,
+      "netAmount": 100,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-14T09:46:31.185Z"
+    },
+    {
+      "id": "sale-pMjxDplK",
+      "businessId": "biz-restaurant-001",
+      "invoiceId": "inv-o5zUBLdT",
+      "invoiceNumber": "INV-20260414-008",
+      "itemsCount": 1,
+      "netAmount": 17000,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-14T10:23:09.522Z"
+    },
+    {
+      "id": "sale-1x5ewtxr",
+      "businessId": "biz-restaurant-001",
+      "invoiceId": "inv-z11SNOUP",
+      "invoiceNumber": "INV-20260414-009",
+      "itemsCount": 1,
+      "netAmount": 17000,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-14T10:23:22.872Z"
+    },
+    {
+      "id": "sale-SppN-sDp",
+      "businessId": "biz-retail-001",
+      "invoiceId": "inv-WKbKKDDw",
+      "invoiceNumber": "INV-20260414-010",
+      "itemsCount": 1,
+      "netAmount": 100,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-14T14:19:15.555Z"
+    },
+    {
+      "id": "sale--Pd8nOXe",
+      "businessId": "biz-restaurant-001",
+      "invoiceId": "inv-whSmoXBB",
+      "invoiceNumber": "INV-20260414-011",
+      "itemsCount": 1,
+      "netAmount": 17000,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-14T14:21:13.502Z"
+    },
+    {
+      "id": "sale-VSQG1MsF",
+      "businessId": "biz-restaurant-001",
+      "invoiceId": "inv-3AXDcz3b",
+      "invoiceNumber": "INV-20260425-001",
+      "itemsCount": 1,
+      "netAmount": 17000,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-25T04:40:42.100Z"
+    },
+    {
+      "id": "sale-fW6Hglwx",
+      "businessId": "biz-restaurant-001",
+      "invoiceId": "inv-WgrbvjFp",
+      "invoiceNumber": "INV-20260425-002",
+      "itemsCount": 1,
+      "netAmount": 17000,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-25T04:41:11.881Z"
+    },
+    {
+      "id": "sale-EFq96F0r",
+      "businessId": "biz-gym-001",
+      "invoiceId": "inv-eL__QRo1",
+      "invoiceNumber": "INV-20260425-003",
+      "itemsCount": 2,
+      "netAmount": 3950,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-25T05:39:53.190Z"
+    },
+    {
+      "id": "sale-rp3EW0Qs",
+      "businessId": "biz-gym-001",
+      "invoiceId": "inv-_uth9tjb",
+      "invoiceNumber": "INV-20260425-004",
+      "itemsCount": 1,
+      "netAmount": 450,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-25T05:44:34.162Z"
+    },
+    {
+      "id": "sale-d7Y-n_DA",
+      "businessId": "biz-retail-001",
+      "invoiceId": "inv-GuhBoPPV",
+      "invoiceNumber": "INV-20260428-001",
+      "itemsCount": 1,
+      "netAmount": 100,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-28T14:50:28.523Z"
+    },
+    {
+      "id": "sale-6_zpvG2W",
+      "businessId": "biz-retail-001",
+      "invoiceId": "inv-guaDeboS",
+      "invoiceNumber": "INV-20260428-002",
+      "itemsCount": 6,
+      "netAmount": 2694,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-28T14:57:32.688Z"
+    },
+    {
+      "id": "sale-1NlCtWKR",
+      "businessId": "biz-retail-001",
+      "invoiceId": "inv-O3G5rJVf",
+      "invoiceNumber": "INV-20260428-003",
+      "itemsCount": 3,
+      "netAmount": 1197,
+      "paymentMethod": "E-Payment",
+      "createdAt": "2026-04-28T15:00:19.486Z"
+    }
+  ],
+  "invoices": [
+    {
+      "id": "inv-001",
+      "businessId": "biz-restaurant-001",
+      "invoiceNumber": "INV-20260414-001",
+      "customerName": "Walk-in Customer",
+      "discountType": "flat",
+      "discountValue": 40,
+      "taxRate": 0,
+      "subtotal": 900,
+      "discountAmount": 40,
+      "taxAmount": 0,
+      "total": 860,
+      "lineItems": [
+        {
+          "id": "ln-001",
+          "itemId": "item-r-001",
+          "name": "Chicken Momo",
+          "quantity": 2,
+          "rate": 220,
+          "total": 440
+        },
+        {
+          "id": "ln-002",
+          "itemId": "item-r-002",
+          "name": "Mocha Coffee",
+          "quantity": 1,
+          "rate": 180,
+          "total": 180
+        },
+        {
+          "id": "ln-003",
+          "itemId": "item-r-003",
+          "name": "Paneer Sizzler",
+          "quantity": 1,
+          "rate": 480,
+          "total": 480
+        }
+      ],
+      "paymentMethod": "Cash",
+      "status": "paid",
+      "createdAt": "2026-04-14T06:30:00.000Z",
+      "notes": "Lunch billing"
+    },
+    {
+      "id": "inv-002",
+      "businessId": "biz-gym-001",
+      "invoiceNumber": "INV-20260414-002",
+      "customerName": "Ritika Sharma",
+      "discountType": "percent",
+      "discountValue": 0,
+      "taxRate": 0,
+      "subtotal": 3500,
+      "discountAmount": 0,
+      "taxAmount": 0,
+      "total": 3500,
+      "lineItems": [
+        {
+          "id": "ln-004",
+          "itemId": "item-g-001",
+          "name": "Monthly Membership",
+          "quantity": 1,
+          "rate": 3500,
+          "total": 3500
+        }
+      ],
+      "paymentMethod": "Card",
+      "status": "paid",
+      "createdAt": "2026-04-14T07:15:00.000Z",
+      "notes": "April membership"
+    },
+    {
+      "id": "inv-003",
+      "businessId": "biz-retail-001",
+      "invoiceNumber": "INV-20260413-001",
+      "customerName": "Aarav KC",
+      "discountType": "flat",
+      "discountValue": 0,
+      "taxRate": 0,
+      "subtotal": 1898,
+      "discountAmount": 0,
+      "taxAmount": 0,
+      "total": 1898,
+      "lineItems": [
+        {
+          "id": "ln-005",
+          "itemId": "item-s-001",
+          "name": "Wireless Mouse",
+          "quantity": 1,
+          "rate": 1499,
+          "total": 1499
+        },
+        {
+          "id": "ln-006",
+          "itemId": "item-s-002",
+          "name": "Notebook Set",
+          "quantity": 1,
+          "rate": 399,
+          "total": 399
+        }
+      ],
+      "paymentMethod": "E-Payment",
+      "status": "paid",
+      "createdAt": "2026-04-13T12:05:00.000Z",
+      "notes": "Counter sale"
+    },
+    {
+      "id": "inv-Qx_ktVoO",
+      "businessId": "biz-restaurant-001",
+      "invoiceNumber": "INV-20260414-003",
+      "customerName": "Walk-in Customer",
+      "discountType": "flat",
+      "discountValue": 0,
+      "taxRate": 0,
+      "subtotal": 220,
+      "discountAmount": 0,
+      "taxAmount": 0,
+      "total": 220,
+      "lineItems": [
+        {
+          "id": "ln-84h7b2Yd",
+          "itemId": "item-r-001",
+          "name": "Chicken Momo",
+          "quantity": 1,
+          "rate": 220,
+          "total": 220
+        }
+      ],
+      "paymentMethod": "Cash",
+      "status": "paid",
+      "createdAt": "2026-04-14T09:19:14.783Z",
+      "notes": ""
+    },
+    {
+      "id": "inv-HAqEErh0",
+      "businessId": "biz-restaurant-001",
+      "invoiceNumber": "INV-20260414-004",
+      "customerName": "Walk-in Customer",
+      "discountType": "flat",
+      "discountValue": 0,
+      "taxRate": 0,
+      "subtotal": 220,
+      "discountAmount": 0,
+      "taxAmount": 0,
+      "total": 220,
+      "lineItems": [
+        {
+          "id": "ln-81GVukHd",
+          "itemId": "item-r-001",
+          "name": "Chicken Momo",
+          "quantity": 1,
+          "rate": 220,
+          "total": 220
+        }
+      ],
+      "paymentMethod": "Cash",
+      "status": "paid",
+      "createdAt": "2026-04-14T09:19:22.785Z",
+      "notes": ""
+    },
+    {
+      "id": "inv-xF1T_wqM",
+      "businessId": "biz-restaurant-001",
+      "invoiceNumber": "INV-20260414-005",
+      "customerName": "Walk-in Customer",
+      "discountType": "flat",
+      "discountValue": 0,
+      "taxRate": 0,
+      "subtotal": 100,
+      "discountAmount": 0,
+      "taxAmount": 0,
+      "total": 100,
+      "lineItems": [
+        {
+          "id": "ln-W6yGRMhw",
+          "itemId": "item-all-001",
+          "name": "Service Charge",
+          "quantity": 1,
+          "rate": 100,
+          "total": 100
+        }
+      ],
+      "paymentMethod": "Cash",
+      "status": "paid",
+      "createdAt": "2026-04-14T09:19:33.477Z",
+      "notes": ""
+    },
+    {
+      "id": "inv-oII3ypdy",
+      "businessId": "biz-restaurant-001",
+      "invoiceNumber": "INV-20260414-006",
+      "customerName": "Walk-in Customer",
+      "discountType": "flat",
+      "discountValue": 0,
+      "taxRate": 0,
+      "subtotal": 100,
+      "discountAmount": 0,
+      "taxAmount": 0,
+      "total": 100,
+      "lineItems": [
+        {
+          "id": "ln-c3gi7VQM",
+          "itemId": "item-all-001",
+          "name": "Service Charge",
+          "quantity": 1,
+          "rate": 100,
+          "total": 100
+        }
+      ],
+      "paymentMethod": "Cash",
+      "status": "paid",
+      "createdAt": "2026-04-14T09:19:37.843Z",
+      "notes": ""
+    },
+    {
+      "id": "inv-mHpu_9fg",
+      "businessId": "biz-restaurant-001",
+      "invoiceNumber": "INV-20260414-007",
+      "customerName": "Walk-in Customer",
+      "discountType": "flat",
+      "discountValue": 0,
+      "taxRate": 0,
+      "subtotal": 100,
+      "discountAmount": 0,
+      "taxAmount": 0,
+      "total": 100,
+      "lineItems": [
+        {
+          "id": "ln-zbPx4O6G",
+          "itemId": "item-all-001",
+          "name": "Service Charge",
+          "quantity": 1,
+          "rate": 100,
+          "total": 100
+        }
+      ],
+      "paymentMethod": "Cash",
+      "status": "paid",
+      "createdAt": "2026-04-14T09:46:31.185Z",
+      "notes": ""
+    },
+    {
+      "id": "inv-o5zUBLdT",
+      "businessId": "biz-restaurant-001",
+      "invoiceNumber": "INV-20260414-008",
+      "customerName": "Walk-in Customer",
+      "discountType": "flat",
+      "discountValue": 0,
+      "taxRate": 0,
+      "subtotal": 17000,
+      "discountAmount": 0,
+      "taxAmount": 0,
+      "total": 17000,
+      "lineItems": [
+        {
+          "id": "ln-xu2xgaun",
+          "itemId": "item-rVz0O2yS",
+          "name": "mantra-guitar",
+          "quantity": 1,
+          "rate": 17000,
+          "total": 17000
+        }
+      ],
+      "paymentMethod": "Cash",
+      "status": "paid",
+      "createdAt": "2026-04-14T10:23:09.522Z",
+      "notes": ""
+    },
+    {
+      "id": "inv-z11SNOUP",
+      "businessId": "biz-restaurant-001",
+      "invoiceNumber": "INV-20260414-009",
+      "customerName": "Walk-in Customer",
+      "discountType": "flat",
+      "discountValue": 0,
+      "taxRate": 0,
+      "subtotal": 17000,
+      "discountAmount": 0,
+      "taxAmount": 0,
+      "total": 17000,
+      "lineItems": [
+        {
+          "id": "ln-6jdARP35",
+          "itemId": "item-rVz0O2yS",
+          "name": "mantra-guitar",
+          "quantity": 1,
+          "rate": 17000,
+          "total": 17000
+        }
+      ],
+      "paymentMethod": "Cash",
+      "status": "paid",
+      "createdAt": "2026-04-14T10:23:22.872Z",
+      "notes": ""
+    },
+    {
+      "id": "inv-WKbKKDDw",
+      "businessId": "biz-retail-001",
+      "invoiceNumber": "INV-20260414-010",
+      "customerName": "Walk-in Customer",
+      "discountType": "flat",
+      "discountValue": 0,
+      "taxRate": 0,
+      "subtotal": 100,
+      "discountAmount": 0,
+      "taxAmount": 0,
+      "total": 100,
+      "lineItems": [
+        {
+          "id": "ln-PnSjYU9S",
+          "itemId": "item-all-001",
+          "name": "Service Charge",
+          "quantity": 1,
+          "rate": 100,
+          "total": 100
+        }
+      ],
+      "paymentMethod": "Cash",
+      "status": "paid",
+      "createdAt": "2026-04-14T14:19:15.555Z",
+      "notes": ""
+    },
+    {
+      "id": "inv-whSmoXBB",
+      "businessId": "biz-restaurant-001",
+      "invoiceNumber": "INV-20260414-011",
+      "customerName": "Walk-in Customer",
+      "discountType": "flat",
+      "discountValue": 0,
+      "taxRate": 0,
+      "subtotal": 17000,
+      "discountAmount": 0,
+      "taxAmount": 0,
+      "total": 17000,
+      "lineItems": [
+        {
+          "id": "ln-b_bU4Lrh",
+          "itemId": "item-rVz0O2yS",
+          "name": "mantra-guitar",
+          "quantity": 1,
+          "rate": 17000,
+          "total": 17000
+        }
+      ],
+      "paymentMethod": "Cash",
+      "status": "paid",
+      "createdAt": "2026-04-14T14:21:13.502Z",
+      "notes": ""
+    },
+    {
+      "id": "inv-3AXDcz3b",
+      "businessId": "biz-restaurant-001",
+      "invoiceNumber": "INV-20260425-001",
+      "customerName": "Walk-in Customer",
+      "discountType": "flat",
+      "discountValue": 0,
+      "taxRate": 0,
+      "subtotal": 17000,
+      "discountAmount": 0,
+      "taxAmount": 0,
+      "total": 17000,
+      "lineItems": [
+        {
+          "id": "ln-RfqwIPLo",
+          "itemId": "item-rVz0O2yS",
+          "name": "mantra-guitar",
+          "quantity": 1,
+          "rate": 17000,
+          "total": 17000
+        }
+      ],
+      "paymentMethod": "Cash",
+      "status": "paid",
+      "createdAt": "2026-04-25T04:40:42.100Z",
+      "notes": ""
+    },
+    {
+      "id": "inv-WgrbvjFp",
+      "businessId": "biz-restaurant-001",
+      "invoiceNumber": "INV-20260425-002",
+      "customerName": "Walk-in Customer",
+      "discountType": "flat",
+      "discountValue": 0,
+      "taxRate": 0,
+      "subtotal": 17000,
+      "discountAmount": 0,
+      "taxAmount": 0,
+      "total": 17000,
+      "lineItems": [
+        {
+          "id": "ln-arQFdz3e",
+          "itemId": "item-rVz0O2yS",
+          "name": "mantra-guitar",
+          "quantity": 1,
+          "rate": 17000,
+          "total": 17000
+        }
+      ],
+      "paymentMethod": "Cash",
+      "status": "paid",
+      "createdAt": "2026-04-25T04:41:11.881Z",
+      "notes": ""
+    },
+    {
+      "id": "inv-eL__QRo1",
+      "businessId": "biz-gym-001",
+      "invoiceNumber": "INV-20260425-003",
+      "customerName": "Walk-in Grahak",
+      "discountType": "flat",
+      "discountValue": 0,
+      "taxRate": 0,
+      "subtotal": 3950,
+      "discountAmount": 0,
+      "taxAmount": 0,
+      "total": 3950,
+      "lineItems": [
+        {
+          "id": "ln-qb_zTKPE",
+          "itemId": "item-g-003",
+          "name": "Protein Smoothie",
+          "quantity": 1,
+          "rate": 450,
+          "total": 450
+        },
+        {
+          "id": "ln-g8KzgqBu",
+          "itemId": "item-g-001",
+          "name": "Monthly Membership",
+          "quantity": 1,
+          "rate": 3500,
+          "total": 3500
+        }
+      ],
+      "paymentMethod": "Cash",
+      "status": "paid",
+      "createdAt": "2026-04-25T05:39:53.190Z",
+      "notes": ""
+    },
+    {
+      "id": "inv-_uth9tjb",
+      "businessId": "biz-gym-001",
+      "invoiceNumber": "INV-20260425-004",
+      "customerName": "Walk-in Grahak",
+      "discountType": "flat",
+      "discountValue": 0,
+      "taxRate": 0,
+      "subtotal": 450,
+      "discountAmount": 0,
+      "taxAmount": 0,
+      "total": 450,
+      "lineItems": [
+        {
+          "id": "ln-bjKipyGP",
+          "itemId": "item-g-003",
+          "name": "Protein Smoothie",
+          "quantity": 1,
+          "rate": 450,
+          "total": 450
+        }
+      ],
+      "paymentMethod": "Cash",
+      "status": "paid",
+      "createdAt": "2026-04-25T05:44:34.162Z",
+      "notes": ""
+    },
+    {
+      "id": "inv-GuhBoPPV",
+      "businessId": "biz-retail-001",
+      "invoiceNumber": "INV-20260428-001",
+      "customerName": "Walk-in Grahak",
+      "discountType": "flat",
+      "discountValue": 0,
+      "taxRate": 0,
+      "subtotal": 100,
+      "discountAmount": 0,
+      "taxAmount": 0,
+      "total": 100,
+      "lineItems": [
+        {
+          "id": "ln-XLgJR2cu",
+          "itemId": "item-all-001",
+          "name": "Service Charge",
+          "quantity": 1,
+          "rate": 100,
+          "total": 100
+        }
+      ],
+      "paymentMethod": "Cash",
+      "status": "paid",
+      "createdAt": "2026-04-28T14:50:28.523Z",
+      "notes": ""
+    },
+    {
+      "id": "inv-guaDeboS",
+      "businessId": "biz-retail-001",
+      "invoiceNumber": "INV-20260428-002",
+      "customerName": "Walk-in Grahak",
+      "discountType": "flat",
+      "discountValue": 0,
+      "taxRate": 0,
+      "subtotal": 2694,
+      "discountAmount": 0,
+      "taxAmount": 0,
+      "total": 2694,
+      "lineItems": [
+        {
+          "id": "ln-nHnIuoC5",
+          "itemId": "item-s-002",
+          "name": "Notebook Set",
+          "quantity": 5,
+          "rate": 399,
+          "total": 1995
+        },
+        {
+          "id": "ln-AOt9LYWN",
+          "itemId": "item-s-003",
+          "name": "Water Bottle",
+          "quantity": 1,
+          "rate": 699,
+          "total": 699
+        }
+      ],
+      "paymentMethod": "Cash",
+      "status": "paid",
+      "createdAt": "2026-04-28T14:57:32.688Z",
+      "notes": ""
+    },
+    {
+      "id": "inv-O3G5rJVf",
+      "businessId": "biz-retail-001",
+      "invoiceNumber": "INV-20260428-003",
+      "customerName": "Walk-in Grahak",
+      "discountType": "flat",
+      "discountValue": 0,
+      "taxRate": 0,
+      "subtotal": 1197,
+      "discountAmount": 0,
+      "taxAmount": 0,
+      "total": 1197,
+      "lineItems": [
+        {
+          "id": "ln-yy-YxD65",
+          "itemId": "item-s-002",
+          "name": "Notebook Set",
+          "quantity": 3,
+          "rate": 399,
+          "total": 1197
+        }
+      ],
+      "paymentMethod": "E-Payment",
+      "status": "paid",
+      "createdAt": "2026-04-28T15:00:19.486Z",
+      "notes": ""
+    }
+  ],
+  "transactions": [
+    {
+      "id": "txn-001",
+      "businessId": "biz-restaurant-001",
+      "type": "incoming",
+      "category": "sale",
+      "referenceId": "inv-001",
+      "description": "Invoice INV-20260414-001",
+      "amount": 860,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-14T06:30:00.000Z"
+    },
+    {
+      "id": "txn-002",
+      "businessId": "biz-gym-001",
+      "type": "incoming",
+      "category": "sale",
+      "referenceId": "inv-002",
+      "description": "Invoice INV-20260414-002",
+      "amount": 3500,
+      "paymentMethod": "Card",
+      "createdAt": "2026-04-14T07:15:00.000Z"
+    },
+    {
+      "id": "txn-003",
+      "businessId": "biz-retail-001",
+      "type": "incoming",
+      "category": "sale",
+      "referenceId": "inv-003",
+      "description": "Invoice INV-20260413-001",
+      "amount": 1898,
+      "paymentMethod": "E-Payment",
+      "createdAt": "2026-04-13T12:05:00.000Z"
+    },
+    {
+      "id": "txn-004",
+      "businessId": "biz-restaurant-001",
+      "type": "outgoing",
+      "category": "expense",
+      "referenceId": "exp-001",
+      "description": "Daily supplies",
+      "amount": 420,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-14T05:00:00.000Z"
+    },
+    {
+      "id": "txn-i01yE321",
+      "businessId": "biz-restaurant-001",
+      "type": "incoming",
+      "category": "sale",
+      "referenceId": "inv-Qx_ktVoO",
+      "description": "Invoice INV-20260414-003",
+      "amount": 220,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-14T09:19:14.783Z"
+    },
+    {
+      "id": "txn-xus2B9uM",
+      "businessId": "biz-restaurant-001",
+      "type": "incoming",
+      "category": "sale",
+      "referenceId": "inv-HAqEErh0",
+      "description": "Invoice INV-20260414-004",
+      "amount": 220,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-14T09:19:22.785Z"
+    },
+    {
+      "id": "txn-NcIshq-s",
+      "businessId": "biz-restaurant-001",
+      "type": "incoming",
+      "category": "sale",
+      "referenceId": "inv-xF1T_wqM",
+      "description": "Invoice INV-20260414-005",
+      "amount": 100,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-14T09:19:33.477Z"
+    },
+    {
+      "id": "txn-grDr4XCG",
+      "businessId": "biz-restaurant-001",
+      "type": "incoming",
+      "category": "sale",
+      "referenceId": "inv-oII3ypdy",
+      "description": "Invoice INV-20260414-006",
+      "amount": 100,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-14T09:19:37.843Z"
+    },
+    {
+      "id": "txn-FtsXXWrX",
+      "businessId": "biz-restaurant-001",
+      "type": "incoming",
+      "category": "sale",
+      "referenceId": "inv-mHpu_9fg",
+      "description": "Invoice INV-20260414-007",
+      "amount": 100,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-14T09:46:31.185Z"
+    },
+    {
+      "id": "txn-HuK-jyBv",
+      "businessId": "biz-restaurant-001",
+      "type": "incoming",
+      "category": "guitar",
+      "referenceId": null,
+      "description": "ls 550",
+      "amount": 15000,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-14T10:13:12.022Z"
+    },
+    {
+      "id": "txn-5eg958Ov",
+      "businessId": "biz-restaurant-001",
+      "type": "incoming",
+      "category": "guitar",
+      "referenceId": null,
+      "description": "ls-5500 (Qty: 14)",
+      "amount": 210000,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-14T10:21:58.067Z"
+    },
+    {
+      "id": "txn-1sOpvpHu",
+      "businessId": "biz-restaurant-001",
+      "type": "outgoing",
+      "category": "guitar",
+      "referenceId": null,
+      "description": "ls-5500 (Qty: 1)",
+      "amount": 16000,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-14T10:22:33.569Z"
+    },
+    {
+      "id": "txn-jujljQS2",
+      "businessId": "biz-restaurant-001",
+      "type": "incoming",
+      "category": "guitar",
+      "referenceId": null,
+      "description": "sdfsdf (Qty: 1)",
+      "amount": 17000,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-14T10:22:51.502Z"
+    },
+    {
+      "id": "txn-KaKYxyVB",
+      "businessId": "biz-restaurant-001",
+      "type": "incoming",
+      "category": "sale",
+      "referenceId": "inv-o5zUBLdT",
+      "description": "Invoice INV-20260414-008",
+      "amount": 17000,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-14T10:23:09.522Z"
+    },
+    {
+      "id": "txn-ov1PovpU",
+      "businessId": "biz-restaurant-001",
+      "type": "incoming",
+      "category": "sale",
+      "referenceId": "inv-z11SNOUP",
+      "description": "Invoice INV-20260414-009",
+      "amount": 17000,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-14T10:23:22.872Z"
+    },
+    {
+      "id": "txn-v9KmU63c",
+      "businessId": "biz-retail-001",
+      "type": "incoming",
+      "category": "sale",
+      "referenceId": "inv-WKbKKDDw",
+      "description": "Invoice INV-20260414-010",
+      "amount": 100,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-14T14:19:15.555Z"
+    },
+    {
+      "id": "txn-OUvR4QQt",
+      "businessId": "biz-restaurant-001",
+      "type": "incoming",
+      "category": "sale",
+      "referenceId": "inv-whSmoXBB",
+      "description": "Invoice INV-20260414-011",
+      "amount": 17000,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-14T14:21:13.502Z"
+    },
+    {
+      "id": "txn-5A825maH",
+      "businessId": "biz-restaurant-001",
+      "type": "incoming",
+      "category": "sale",
+      "referenceId": "inv-3AXDcz3b",
+      "description": "Invoice INV-20260425-001",
+      "amount": 17000,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-25T04:40:42.100Z"
+    },
+    {
+      "id": "txn-eeze7r0M",
+      "businessId": "biz-restaurant-001",
+      "type": "incoming",
+      "category": "sale",
+      "referenceId": "inv-WgrbvjFp",
+      "description": "Invoice INV-20260425-002",
+      "amount": 17000,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-25T04:41:11.881Z"
+    },
+    {
+      "id": "txn-_FbVpm-g",
+      "businessId": "biz-gym-001",
+      "type": "incoming",
+      "category": "sale",
+      "referenceId": "inv-eL__QRo1",
+      "description": "Invoice INV-20260425-003",
+      "amount": 3950,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-25T05:39:53.190Z"
+    },
+    {
+      "id": "txn-50QckVSi",
+      "businessId": "biz-gym-001",
+      "type": "incoming",
+      "category": "sale",
+      "referenceId": "inv-_uth9tjb",
+      "description": "Invoice INV-20260425-004",
+      "amount": 450,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-25T05:44:34.162Z"
+    },
+    {
+      "id": "txn--imRHcUK",
+      "businessId": "biz-retail-001",
+      "type": "incoming",
+      "category": "sale",
+      "referenceId": "inv-GuhBoPPV",
+      "description": "Invoice INV-20260428-001",
+      "amount": 100,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-28T14:50:28.523Z"
+    },
+    {
+      "id": "txn-gl93_589",
+      "businessId": "biz-retail-001",
+      "type": "incoming",
+      "category": "house hold",
+      "referenceId": null,
+      "description": "ghar mah proyag hune (Qty: 11)",
+      "amount": 13200,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-28T14:53:29.198Z"
+    },
+    {
+      "id": "txn-_g1-uRTW",
+      "businessId": "biz-retail-001",
+      "type": "outgoing",
+      "category": "house hold",
+      "referenceId": null,
+      "description": "ghar ko kura (Qty: 12)",
+      "amount": 16800,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-28T14:54:24.429Z"
+    },
+    {
+      "id": "txn-TNz50fG_",
+      "businessId": "biz-retail-001",
+      "type": "incoming",
+      "category": "sale",
+      "referenceId": "inv-guaDeboS",
+      "description": "Invoice INV-20260428-002",
+      "amount": 2694,
+      "paymentMethod": "Cash",
+      "createdAt": "2026-04-28T14:57:32.688Z"
+    },
+    {
+      "id": "txn-2wOFYYmp",
+      "businessId": "biz-retail-001",
+      "type": "incoming",
+      "category": "sale",
+      "referenceId": "inv-O3G5rJVf",
+      "description": "Invoice INV-20260428-003",
+      "amount": 1197,
+      "paymentMethod": "E-Payment",
+      "createdAt": "2026-04-28T15:00:19.486Z"
+    }
+  ]
+}
